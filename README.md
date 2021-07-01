@@ -1,2 +1,2 @@
-# CAS-Construct
-Clever Ads Solutions Construct plugin
+# Clever Ads Solutions Construct plugin
+Coming soon...
