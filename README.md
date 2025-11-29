@@ -1,25 +1,27 @@
-# CleverAdsSolutions-Construct Integration
-[![GitHub release (latest by date)](https://img.shields.io/npm/v/@cleveradssolutions/cas.cordova.base?label=CAS%20Cordova)](https://github.com/cleveradssolutions/CAS-Cordova)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/CleverAdsSolutions/CAS-Android?label=CAS%20Android)](https://github.com/cleveradssolutions/CAS-Android)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/CleverAdsSolutions/CAS-iOS?label=CAS%20iOS)](https://github.com/cleveradssolutions/CAS-iOS)
-[![App-ads.txt](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/cleveradssolutions/App-ads.txt/master/Shield.json)](https://github.com/cleveradssolutions/App-ads.txt)        
+# CAS.AI Mobile Ads for Construct
+[![GitHub Release](https://img.shields.io/github/v/release/cleveradssolutions/CAS-Construct?logo=github)
+](https://github.com/cleveradssolutions/CAS-Construct/releases)
+![Construct](https://img.shields.io/badge/Construct%203-r401-blue.svg?logo=construct3)
+![SDK](https://img.shields.io/badge/Addon%20SDK-v2-blue.svg)
+![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS-blue.svg)
+[![App-ads.txt](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/cleveradssolutions/App-ads.txt/master/Shield.json)](https://github.com/cleveradssolutions/App-ads.txt)
 
-The Clever Ads Solutions Construct plugin enables Construct developers to easily serve Mobile Ads on Android and iOS apps. 
+The CAS.AI Mobile Ads SDK (by CleverAdsSolutions) offers advanced mobile advertising capabilities with refined ad formats and streamlined APIs to access multiple ad networks and maximize monetization in mobile apps.
+
+This repository contains the official Construct plugin for CAS.AI, allowing Construct 3 developers to easily integrate and monetize their apps using the CAS.AI SDK.     
 
 ## Getting Started
-To get started, here is the link to [Construct plugin integration documentation](https://github.com/cleveradssolutions/CAS-Construct/wiki).
+For setup instructions, usage examples, and API details, refer to the [Developer Guide](https://docs.page/cleveradssolutions/docs/Construct).
 
-## Demo application
+## Downloads
+Visit [releases assets](https://github.com/cleveradssolutions/CAS-Construct/releases) to get the latest version of the `.c3addon`.
 
-The Integration Demo application demonstrate how to integrate the CAS in your app.
+## Feedback & Contributions
+Found a bug? Have a feature request or suggestion?  
+Please open an issue using [GitHub’s Issue Tracker](https://github.com/cleveradssolutions/CAS-Construct/issues).
 
-[Construct3 Sample project](https://github.com/cleveradssolutions/CAS-Construct/blob/main/CAS-Construct-Sample.c3p)
+## Dependency repositories
+This Construct plugin is built on top of the CAS.AI Cordova plugin for building Android and iOS applications.
+- [CAS.AI Cordova plugin (GitHub)](https://github.com/cleveradssolutions/CAS-Cordova)
 
-## GitHub issue tracker
-To file bugs, make feature requests, or suggest improvements for the Construct3 Plugin SDK, please use [GitHub's issue tracker](https://github.com/cleveradssolutions/CAS-Construct/issues).
-
-## Support
-mailto:support@cleveradssolutions.com
-
-## License
-The CAS Construct plugin is available under a commercial license. See the LICENSE file for more info.
+Refer to these repositories for follow the latest releases, changelogs, or to report platform-specific issues.

@@ -1,0 +1,7 @@
+/ts-defs
+/node_modules
+/package-lock.json
+/*.c3addon
+/*.c3p
+/CASExample
+/dist

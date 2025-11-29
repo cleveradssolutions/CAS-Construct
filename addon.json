@@ -1,0 +1,36 @@
+﻿{
+	"$schema": "schema/plugin.addon.schema.json",
+
+	"is-c3-addon": true,
+	"sdk-version": 2,
+	"min-construct-version": "r401",
+	"type": "plugin",
+	"name": "CASMobileAds",
+	"id": "CASAI_MobileAds",
+	"version": "4.5.1.0",
+	"author": "Clever Ads Solutions LTD",
+	"website": "https://cas.ai",
+	"documentation": "https://docs.page/cleveradssolutions/docs/Construct",
+	"description": "The CAS.AI Construct plugin allows you to easily monetize your apps for iOS and Android using lot of Ads SDKs in mediation.",
+	"editor-scripts": [
+						"plugin.js",
+						"type.js",
+						"instance.js"
+					],
+	"file-list": [
+		"c3runtime/main.js",
+		"c3runtime/plugin.js",
+		"c3runtime/type.js",
+		"c3runtime/instance.js",
+		"c3runtime/conditions.js",
+		"c3runtime/actions.js",
+		"c3runtime/expressions.js",
+		"lang/en-US.json",
+		"aces.json",
+		"addon.json",
+		"icon.svg",
+		"instance.js",
+		"plugin.js",
+		"type.js"
+	]
+}

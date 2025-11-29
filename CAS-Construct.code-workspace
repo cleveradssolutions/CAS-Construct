@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"*.js": true,
+			"c3runtime/*.js": true
+		},
+		"search.exclude": {
+			"*.js": true,
+			"c3runtime/*.js": true
+		}
+	},
+}

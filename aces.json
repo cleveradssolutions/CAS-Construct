@@ -1,0 +1,531 @@
+﻿{
+	"$schema": "schema/aces.schema.json",
+	"general": {
+		"actions": [
+			{
+				"id": "show-consent-form",
+				"scriptName": "ShowConsentForm",
+				"highlight": false,
+				"params": [
+					{
+						"id": "if-required-only",
+						"type": "boolean",
+						"initialValue": "false"
+					}
+				]
+			},
+			{
+				"id": "set-ad-sounds-muted",
+				"scriptName": "SetAdSoundsMuted",
+				"highlight": false,
+				"params": [
+					{
+						"id": "is-muted",
+						"type": "boolean",
+						"initialValue": "false",
+						"autocompleteId": ""
+					}
+				]
+			}
+		],
+		"conditions": [
+			{
+				"id": "on-consent-form-dismissed",
+				"scriptName": "OnConsentFormDismissed",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-consent-required",
+				"scriptName": "OnConsentRequired",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-consent-not-required",
+				"scriptName": "OnConsentNotRequired",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "is-consent-required",
+				"scriptName": "IsConsentRequired",
+				"highlight": false,
+				"isInvertible": true
+			}
+		],
+		"expressions": [
+			{
+				"id": "initialization-error",
+				"expressionName": "InitializationError",
+				"returnType": "string"
+			},
+			{
+				"id": "user-country-code",
+				"expressionName": "UserCountryCode",
+				"returnType": "string"
+			},
+			{
+				"id": "consent-status",
+				"expressionName": "ConsentStatus",
+				"returnType": "string"
+			},
+			{
+				"id": "error-message",
+				"expressionName": "ErrorMessage",
+				"returnType": "string"
+			}
+		]
+	},
+	"banner-ads": {
+		"actions": [
+			{
+				"id": "load-banner-ad",
+				"scriptName": "LoadBannerAd",
+				"highlight": true,
+				"isAsync": true,
+				"params": [
+					{
+						"id": "ad-size",
+						"type": "combo",
+						"items": [
+							"adaptive",
+							"inline",
+							"smart",
+							"leaderboard",
+							"standard"
+						]
+					},
+					{
+						"id": "max-width",
+						"type": "number",
+						"initialValue": "0"
+					},
+					{
+						"id": "max-height",
+						"type": "number",
+						"initialValue": "0"
+					}
+				]
+			},
+			{
+				"id": "show-banner-ad",
+				"scriptName": "ShowBannerAd",
+				"highlight": true,
+				"params": [
+					{
+						"id": "position",
+						"type": "combo",
+						"items": [
+							"top-center",
+							"top-left",
+							"top-right",
+							"bottom-center",
+							"bottom-left",
+							"bottom-right",
+							"middle-center",
+							"middle-left",
+							"middle-right"
+						],
+						"initialValue": "bottom-center"
+					},
+					{
+						"id": "x-offset",
+						"type": "number",
+						"initialValue": "0"
+					},
+					{
+						"id": "y-offset",
+						"type": "number",
+						"initialValue": "0"
+					}
+				]
+			},
+			{
+				"id": "hide-banner-ad",
+				"scriptName": "HideBannerAd",
+				"highlight": false
+			},
+			{
+				"id": "destroy-banner-ad",
+				"scriptName": "DestroyBannerAd",
+				"highlight": false
+			}
+		],
+		"conditions": [
+			{
+				"id": "on-banner-ad-loaded",
+				"scriptName": "OnBannerAdLoaded",
+				"highlight": true,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-banner-ad-failed-to-load",
+				"scriptName": "OnBannerAdFailedToLoad",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-banner-ad-clicked",
+				"scriptName": "OnBannerAdClicked",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "is-banner-ad-loaded",
+				"scriptName": "IsBannerAdLoaded",
+				"highlight": false,
+				"isInvertible": true
+			}
+		],
+		"expressions": []
+	},
+	"mrec-ads": {
+		"actions": [
+			{
+				"id": "load-mrec-ad",
+				"scriptName": "LoadMRecAd",
+				"highlight": false,
+				"isAsync": true
+			},
+			{
+				"id": "show-mrec-ad",
+				"scriptName": "ShowMRecAd",
+				"highlight": true,
+				"params": [
+					{
+						"id": "position",
+						"type": "combo",
+						"items": [
+							"top-center",
+							"top-left",
+							"top-right",
+							"bottom-center",
+							"bottom-left",
+							"bottom-right",
+							"middle-center",
+							"middle-left",
+							"middle-right"
+						],
+						"initialValue": "bottom-center"
+					},
+					{
+						"id": "x-offset",
+						"type": "number",
+						"initialValue": "0"
+					},
+					{
+						"id": "y-offset",
+						"type": "number",
+						"initialValue": "0"
+					}
+				]
+			},
+			{
+				"id": "hide-mrec-ad",
+				"scriptName": "HideMRecAd",
+				"highlight": false
+			},
+			{
+				"id": "destroy-mrec-ad",
+				"scriptName": "DestroyMRecAd",
+				"highlight": false
+			}
+		],
+		"conditions": [
+			{
+				"id": "on-mrec-ad-loaded",
+				"scriptName": "OnMRecAdLoaded",
+				"highlight": true,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-mrec-ad-failed-to-load",
+				"scriptName": "OnMRecAdFailedToLoad",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-mrec-ad-clicked",
+				"scriptName": "OnMRecAdClicked",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "is-mrec-ad-loaded",
+				"scriptName": "IsMRecAdLoaded",
+				"highlight": false,
+				"isInvertible": true
+			}
+		],
+		"expressions": []
+	},
+	"appopen-ads": {
+		"actions": [
+			{
+				"id": "load-app-open-ad",
+				"scriptName": "LoadAppOpenAd",
+				"highlight": false,
+				"isAsync": true
+			},
+			{
+				"id": "show-app-open-ad",
+				"scriptName": "ShowAppOpenAd",
+				"highlight": true,
+				"isAsync": true
+			},
+			{
+				"id": "destroy-app-open-ad",
+				"scriptName": "DestroyAppOpenAd",
+				"highlight": false
+			}
+		],
+		"conditions": [
+			{
+				"id": "on-app-open-ad-loaded",
+				"scriptName": "OnAppOpenAdLoaded",
+				"highlight": true,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-app-open-ad-failed-to-load",
+				"scriptName": "OnAppOpenAdFailedToLoad",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-app-open-ad-failed-to-show",
+				"scriptName": "OnAppOpenAdFailedToShow",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-app-open-ad-showed",
+				"scriptName": "OnAppOpenAdShowed",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-app-open-ad-clicked",
+				"scriptName": "OnAppOpenAdClicked",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-app-open-ad-dismissed",
+				"scriptName": "OnAppOpenAdDismissed",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "is-app-open-ad-loaded",
+				"scriptName": "IsAppOpenAdLoaded",
+				"highlight": false,
+				"isInvertible": true
+			}
+		],
+		"expressions": []
+	},
+	"interstitial-ads": {
+		"actions": [
+			{
+				"id": "load-interstitial-ad",
+				"scriptName": "LoadInterstitialAd",
+				"highlight": false,
+				"isAsync": true
+			},
+			{
+				"id": "show-interstitial-ad",
+				"scriptName": "ShowInterstitialAd",
+				"highlight": true,
+				"isAsync": true
+			},
+			{
+				"id": "destroy-interstitial-ad",
+				"scriptName": "DestroyInterstitialAd",
+				"highlight": false
+			}
+		],
+		"conditions": [
+			{
+				"id": "on-interstitial-ad-loaded",
+				"scriptName": "OnInterstitialAdLoaded",
+				"highlight": true,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-interstitial-ad-failed-to-load",
+				"scriptName": "OnInterstitialAdFailedToLoad",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-interstitial-ad-failed-to-show",
+				"scriptName": "OnInterstitialAdFailedToShow",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-interstitial-ad-showed",
+				"scriptName": "OnInterstitialAdShowed",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-interstitial-ad-clicked",
+				"scriptName": "OnInterstitialAdClicked",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-interstitial-ad-dismissed",
+				"scriptName": "OnInterstitialAdDismissed",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "is-interstitial-ad-loaded",
+				"scriptName": "IsInterstitialAdLoaded",
+				"highlight": false,
+				"isInvertible": true
+			}
+		],
+		"expressions": []
+	},
+	"rewarded-ads": {
+		"actions": [
+			{
+				"id": "load-rewarded-ad",
+				"scriptName": "LoadRewardedAd",
+				"highlight": false,
+				"isAsync": true
+			},
+			{
+				"id": "show-rewarded-ad",
+				"scriptName": "ShowRewardedAd",
+				"highlight": true,
+				"isAsync": true
+			},
+			{
+				"id": "destroy-rewarded-ad",
+				"scriptName": "DestroyRewardedAd",
+				"highlight": false
+			}
+		],
+		"conditions": [
+			{
+				"id": "on-rewarded-ad-loaded",
+				"scriptName": "OnRewardedAdLoaded",
+				"highlight": true,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-rewarded-ad-failed-to-load",
+				"scriptName": "OnRewardedAdFailedToLoad",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-rewarded-ad-failed-to-show",
+				"scriptName": "OnRewardedAdFailedToShow",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-rewarded-ad-showed",
+				"scriptName": "OnRewardedAdShowed",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-rewarded-ad-clicked",
+				"scriptName": "OnRewardedAdClicked",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-rewarded-ad-dismissed",
+				"scriptName": "OnRewardedAdDismissed",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-rewarded-ad-user-earned-reward",
+				"scriptName": "OnRewardedAdUserEarnedReward",
+				"highlight": true,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "on-rewarded-ad-canceled-by-user",
+				"scriptName": "OnRewardedAdCanceledByUser",
+				"highlight": false,
+				"isTrigger": true,
+				"isInvertible": false,
+				"isCompatibleWithTriggers": false
+			},
+			{
+				"id": "is-rewarded-ad-loaded",
+				"scriptName": "IsRewardedAdLoaded",
+				"highlight": false,
+				"isInvertible": true
+			}
+		],
+		"expressions": []
+	}
+}
