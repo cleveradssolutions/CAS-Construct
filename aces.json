@@ -6,6 +6,7 @@
 				"id": "show-consent-form",
 				"scriptName": "ShowConsentForm",
 				"highlight": false,
+				"isAsync": true,
 				"params": [
 					{
 						"id": "if-required-only",

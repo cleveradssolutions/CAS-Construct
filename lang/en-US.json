@@ -137,7 +137,7 @@
 						"desc": "Interval (in seconds) starting from the moment of the initial app installation, during which users can use the application without ads being displayed while still retaining access to the Rewarded Ads format. Within this interval, users enjoy privileged access to the application's features without intrusive advertisements."
 					},
 					"development": {
-						"name": "Development options",
+						"name": "Development Options",
 						"desc": "We strongly suggest that you enable test ads mode when you validate the integration. If you click on too many ads without being in test mode, you risk your account being flagged for invalid activity."
 					},
 					"force-test-ads": {
