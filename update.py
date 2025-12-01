@@ -1,6 +1,10 @@
 
 # https://editor.construct.net/
 
+# Publication login: CleverAdsSolutions 
+# https://www.construct.net/en/make-games/addons/manage
+# https://www.construct.net/en/make-games/addons/1532/cas-ai-mobile-ads
+
 # Plugin compile flow:
 # $ npm update
 # $ python3 update.py

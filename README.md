@@ -1,7 +1,7 @@
 # CAS.AI Mobile Ads for Construct
-[![GitHub Release](https://img.shields.io/github/v/release/cleveradssolutions/CAS-Construct?logo=github)
-](https://github.com/cleveradssolutions/CAS-Construct/releases)
-![Construct](https://img.shields.io/badge/Construct%203-r401-blue.svg?logo=construct3)
+[![Addon Release](https://img.shields.io/github/v/release/cleveradssolutions/CAS-Construct?logo=construct3&label=Addon)
+](https://www.construct.net/en/make-games/addons/1532/cas-ai-mobile-ads)
+![Construct](https://img.shields.io/badge/Construct%203-r401-blue.svg)
 ![SDK](https://img.shields.io/badge/Addon%20SDK-v2-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS-blue.svg)
 [![App-ads.txt](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/cleveradssolutions/App-ads.txt/master/Shield.json)](https://github.com/cleveradssolutions/App-ads.txt)
@@ -19,7 +19,7 @@ Simply [Get started with cas.ai](https://cas.ai) and get immediate access to our
 For setup instructions, usage examples, and API details, refer to the [Developer Guide](https://docs.page/cleveradssolutions/docs/Construct).
 
 ## Downloads
-Visit [releases assets](https://github.com/cleveradssolutions/CAS-Construct/releases) to get the latest version of the `.c3addon`.
+Visit [Construct Addons](https://www.construct.net/en/make-games/addons/1532/cas-ai-mobile-ads) or [releases assets](https://github.com/cleveradssolutions/CAS-Construct/releases) to get the latest version of the `.c3addon`.
 
 ## Feedback & Contributions
 Found a bug? Have a feature request or suggestion?  
