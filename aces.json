@@ -247,7 +247,7 @@
 		"conditions": [
 			{
 				"id": "on-mrec-ad-loaded",
-				"scriptName": "OnMRecAdLoaded",
+				"scriptName": "OnMRECAdLoaded",
 				"highlight": true,
 				"isTrigger": true,
 				"isInvertible": false,
@@ -255,7 +255,7 @@
 			},
 			{
 				"id": "on-mrec-ad-failed-to-load",
-				"scriptName": "OnMRecAdFailedToLoad",
+				"scriptName": "OnMRECAdFailedToLoad",
 				"highlight": false,
 				"isTrigger": true,
 				"isInvertible": false,
@@ -263,7 +263,7 @@
 			},
 			{
 				"id": "on-mrec-ad-clicked",
-				"scriptName": "OnMRecAdClicked",
+				"scriptName": "OnMRECAdClicked",
 				"highlight": false,
 				"isTrigger": true,
 				"isInvertible": false,
@@ -271,7 +271,7 @@
 			},
 			{
 				"id": "is-mrec-ad-loaded",
-				"scriptName": "IsMRecAdLoaded",
+				"scriptName": "IsMRECAdLoaded",
 				"highlight": false,
 				"isInvertible": true
 			}

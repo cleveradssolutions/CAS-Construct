@@ -171,6 +171,183 @@
 					"interstitial-ads": "4. Interstitial Ads",
 					"rewarded-ads": "5. Rewarded Ads"
 				},
+				"conditions": {
+					"on-consent-form-dismissed": {
+						"list-name": "On Consent Form Dismissed",
+						"display-text": "On consent form dismissed",
+						"description": "Triggered when the consent form is dismissed after CAS initialization or manual consent form show."
+					},
+					"on-consent-required": {
+						"list-name": "On Consent Required",
+						"display-text": "On consent required",
+						"description": "Triggered when user consent is required  after CAS initialization or manual consent form show."
+					},
+					"on-consent-not-required": {
+						"list-name": "On Consent Not Required",
+						"display-text": "On consent not required",
+						"description": "Triggered when user consent is not required after CAS initialization or manual consent flow show.."
+					},
+					"is-consent-required": {
+						"list-name": "Is Consent Required",
+						"display-text": "Is consent required",
+						"description": "Checks if user consent is required."
+					},
+					"on-banner-ad-loaded": {
+						"list-name": "On Ad Loaded",
+						"display-text": "On banner ad loaded",
+						"description": "Triggered when a banner ad is successfully loaded."
+					},
+					"on-banner-ad-failed-to-load": {
+						"list-name": "On Ad Failed to Load",
+						"display-text": "On banner ad failed to load",
+						"description": "Triggered when a banner ad fails to load."
+					},
+					"on-banner-ad-clicked": {
+						"list-name": "On Ad Clicked",
+						"display-text": "On banner ad clicked",
+						"description": "Triggered when a banner ad is clicked."
+					},
+					"is-banner-ad-loaded": {
+						"list-name": "Is Ad Loaded",
+						"display-text": "Is banner ad loaded",
+						"description": "Checks if a banner ad is loaded."
+					},
+					"on-mrec-ad-loaded": {
+						"list-name": "On Ad Loaded",
+						"display-text": "On MREC ad loaded",
+						"description": "Triggered when a medium rectangle (MREC) ad is successfully loaded."
+					},
+					"on-mrec-ad-failed-to-load": {
+						"list-name": "On Ad Failed to Load",
+						"display-text": "On MREC ad failed to load",
+						"description": "Triggered when a medium rectangle (MREC) ad fails to load."
+					},
+					"on-mrec-ad-clicked": {
+						"list-name": "On Ad Clicked",
+						"display-text": "On MREC ad clicked",
+						"description": "Triggered when a medium rectangle (MREC) ad is clicked."
+					},
+					"is-mrec-ad-loaded": {
+						"list-name": "Is Ad Loaded",
+						"display-text": "Is MREC ad loaded",
+						"description": "Checks if a medium rectangle (MREC) ad is loaded."
+					},
+					"on-app-open-ad-loaded": {
+						"list-name": "On Ad Loaded",
+						"display-text": "On app open ad loaded",
+						"description": "Triggered when an app open ad is successfully loaded."
+					},
+					"on-app-open-ad-failed-to-load": {
+						"list-name": "On Ad Failed to Load",
+						"display-text": "On app open ad failed to load",
+						"description": "Triggered when an app open ad fails to load."
+					},
+					"on-app-open-ad-failed-to-show": {
+						"list-name": "On Ad Failed to Show",
+						"display-text": "On app open ad failed to show",
+						"description": "Triggered when an app open ad fails to show."
+					},
+					"on-app-open-ad-showed": {
+						"list-name": "On Ad Showed",
+						"display-text": "On app open ad showed",
+						"description": "Triggered when an app open ad is shown."
+					},
+					"on-app-open-ad-clicked": {
+						"list-name": "On Ad Clicked",
+						"display-text": "On app open ad clicked",
+						"description": "Triggered when an app open ad is clicked."
+					},
+					"on-app-open-ad-dismissed": {
+						"list-name": "On Ad Dismissed",
+						"display-text": "On app open ad dismissed",
+						"description": "Triggered when an app open ad is dismissed."
+					},
+					"is-app-open-ad-loaded": {
+						"list-name": "Is Ad Loaded",
+						"display-text": "Is app open ad loaded",
+						"description": "Checks if an app open ad is loaded."
+					},
+					"on-interstitial-ad-loaded": {
+						"list-name": "On Ad Loaded",
+						"display-text": "On interstitial ad loaded",
+						"description": "Triggered when an interstitial ad is successfully loaded."
+					},
+					"on-interstitial-ad-failed-to-load": {
+						"list-name": "On Ad Failed to Load",
+						"display-text": "On interstitial ad failed to load",
+						"description": "Triggered when an interstitial ad fails to load."
+					},
+					"on-interstitial-ad-failed-to-show": {
+						"list-name": "On Ad Failed to Show",
+						"display-text": "On interstitial ad failed to show",
+						"description": "Triggered when an interstitial ad fails to show."
+					},
+					"on-interstitial-ad-showed": {
+						"list-name": "On Ad Showed",
+						"display-text": "On interstitial ad showed",
+						"description": "Triggered when an interstitial ad is shown."
+					},
+					"on-interstitial-ad-clicked": {
+						"list-name": "On Ad Clicked",
+						"display-text": "On interstitial ad clicked",
+						"description": "Triggered when an interstitial ad is clicked."
+					},
+					"on-interstitial-ad-dismissed": {
+						"list-name": "On Ad Dismissed",
+						"display-text": "On interstitial ad dismissed",
+						"description": "Triggered when an interstitial ad is dismissed."
+					},
+					"is-interstitial-ad-loaded": {
+						"list-name": "Is Ad Loaded",
+						"display-text": "Is interstitial ad loaded",
+						"description": "Checks if an interstitial ad is loaded."
+					},
+					"on-rewarded-ad-loaded": {
+						"list-name": "On Ad Loaded",
+						"display-text": "On rewarded ad loaded",
+						"description": "Triggered when a rewarded ad is successfully loaded."
+					},
+					"on-rewarded-ad-failed-to-load": {
+						"list-name": "On Ad Failed to Load",
+						"display-text": "On rewarded ad failed to load",
+						"description": "Triggered when a rewarded ad fails to load."
+					},
+					"on-rewarded-ad-failed-to-show": {
+						"list-name": "On Ad Failed to Show",
+						"display-text": "On rewarded ad failed to show",
+						"description": "Triggered when a rewarded ad fails to show."
+					},
+					"on-rewarded-ad-showed": {
+						"list-name": "On Ad Showed",
+						"display-text": "On rewarded ad showed",
+						"description": "Triggered when a rewarded ad is shown."
+					},
+					"on-rewarded-ad-clicked": {
+						"list-name": "On Ad Clicked",
+						"display-text": "On rewarded ad clicked",
+						"description": "Triggered when a rewarded ad is clicked."
+					},
+					"on-rewarded-ad-dismissed": {
+						"list-name": "On Ad Dismissed",
+						"display-text": "On rewarded ad dismissed",
+						"description": "Triggered when a rewarded ad is dismissed."
+					},
+					"on-rewarded-ad-user-earned-reward": {
+						"list-name": "On Ad User Earned Reward",
+						"display-text": "On rewarded ad user earned reward",
+						"description": "Triggered when the user earns a reward from a rewarded ad."
+					},
+					"on-rewarded-ad-canceled-by-user": {
+						"list-name": "On Ad Canceled by User",
+						"display-text": "On rewarded ad canceled by user",
+						"description": "Triggered when the user cancel a rewarded ad and must not earn reward."
+					},
+					"is-rewarded-ad-loaded": {
+						"list-name": "Is Ad Loaded",
+						"display-text": "Is rewarded ad loaded",
+						"description": "Checks if a rewarded ad is loaded."
+					}
+				},
 				"actions": {
 					"show-consent-form": {
 						"list-name": "Show Consent Form",
@@ -349,183 +526,6 @@
 						"list-name": "Destroy Rewarded Ad",
 						"display-text": "Destroy rewarded ad",
 						"description": "Destroys the rewarded ad instance and frees up resources. To resume working with ads, call the load ad action."
-					}
-				},
-				"conditions": {
-					"on-consent-form-dismissed": {
-						"list-name": "On Consent Form Dismissed",
-						"display-text": "On consent form dismissed",
-						"description": "Triggered when the consent form is dismissed after CAS initialization or manual consent form show."
-					},
-					"on-consent-required": {
-						"list-name": "On Consent Required",
-						"display-text": "On consent required",
-						"description": "Triggered when user consent is required  after CAS initialization or manual consent form show."
-					},
-					"on-consent-not-required": {
-						"list-name": "On Consent Not Required",
-						"display-text": "On consent not required",
-						"description": "Triggered when user consent is not required after CAS initialization or manual consent flow show.."
-					},
-					"is-consent-required": {
-						"list-name": "Is Consent Required",
-						"display-text": "Is consent required",
-						"description": "Checks if user consent is required."
-					},
-					"on-banner-ad-loaded": {
-						"list-name": "On Ad Loaded",
-						"display-text": "On banner ad loaded",
-						"description": "Triggered when a banner ad is successfully loaded."
-					},
-					"on-banner-ad-failed-to-load": {
-						"list-name": "On Ad Failed to Load",
-						"display-text": "On banner ad failed to load",
-						"description": "Triggered when a banner ad fails to load."
-					},
-					"on-banner-ad-clicked": {
-						"list-name": "On Ad Clicked",
-						"display-text": "On banner ad clicked",
-						"description": "Triggered when a banner ad is clicked."
-					},
-					"is-banner-ad-loaded": {
-						"list-name": "Is Ad Loaded",
-						"display-text": "Is banner ad loaded",
-						"description": "Checks if a banner ad is loaded."
-					},
-					"on-mrec-ad-loaded": {
-						"list-name": "On Ad Loaded",
-						"display-text": "On MREC ad loaded",
-						"description": "Triggered when a medium rectangle (MREC) ad is successfully loaded."
-					},
-					"on-mrec-ad-failed-to-load": {
-						"list-name": "On Ad Failed to Load",
-						"display-text": "On MREC ad failed to load",
-						"description": "Triggered when a medium rectangle (MREC) ad fails to load."
-					},
-					"on-mrec-ad-clicked": {
-						"list-name": "On Ad Clicked",
-						"display-text": "On MREC ad clicked",
-						"description": "Triggered when a medium rectangle (MREC) ad is clicked."
-					},
-					"is-mrec-ad-loaded": {
-						"list-name": "Is Ad Loaded",
-						"display-text": "Is MREC ad loaded",
-						"description": "Checks if a medium rectangle (MREC) ad is loaded."
-					},
-					"on-app-open-ad-loaded": {
-						"list-name": "On Ad Loaded",
-						"display-text": "On app open ad loaded",
-						"description": "Triggered when an app open ad is successfully loaded."
-					},
-					"on-app-open-ad-failed-to-load": {
-						"list-name": "On Ad Failed to Load",
-						"display-text": "On app open ad failed to load",
-						"description": "Triggered when an app open ad fails to load."
-					},
-					"on-app-open-ad-failed-to-show": {
-						"list-name": "On Ad Failed to Show",
-						"display-text": "On app open ad failed to show",
-						"description": "Triggered when an app open ad fails to show."
-					},
-					"on-app-open-ad-showed": {
-						"list-name": "On Ad Showed",
-						"display-text": "On app open ad showed",
-						"description": "Triggered when an app open ad is shown."
-					},
-					"on-app-open-ad-clicked": {
-						"list-name": "On Ad Clicked",
-						"display-text": "On app open ad clicked",
-						"description": "Triggered when an app open ad is clicked."
-					},
-					"on-app-open-ad-dismissed": {
-						"list-name": "On Ad Dismissed",
-						"display-text": "On app open ad dismissed",
-						"description": "Triggered when an app open ad is dismissed."
-					},
-					"is-app-open-ad-loaded": {
-						"list-name": "Is Ad Loaded",
-						"display-text": "Is app open ad loaded",
-						"description": "Checks if an app open ad is loaded."
-					},
-					"on-interstitial-ad-loaded": {
-						"list-name": "On Ad Loaded",
-						"display-text": "On interstitial ad loaded",
-						"description": "Triggered when an interstitial ad is successfully loaded."
-					},
-					"on-interstitial-ad-failed-to-load": {
-						"list-name": "On Ad Failed to Load",
-						"display-text": "On interstitial ad failed to load",
-						"description": "Triggered when an interstitial ad fails to load."
-					},
-					"on-interstitial-ad-failed-to-show": {
-						"list-name": "On Ad Failed to Show",
-						"display-text": "On interstitial ad failed to show",
-						"description": "Triggered when an interstitial ad fails to show."
-					},
-					"on-interstitial-ad-showed": {
-						"list-name": "On Ad Showed",
-						"display-text": "On interstitial ad showed",
-						"description": "Triggered when an interstitial ad is shown."
-					},
-					"on-interstitial-ad-clicked": {
-						"list-name": "On Ad Clicked",
-						"display-text": "On interstitial ad clicked",
-						"description": "Triggered when an interstitial ad is clicked."
-					},
-					"on-interstitial-ad-dismissed": {
-						"list-name": "On Ad Dismissed",
-						"display-text": "On interstitial ad dismissed",
-						"description": "Triggered when an interstitial ad is dismissed."
-					},
-					"is-interstitial-ad-loaded": {
-						"list-name": "Is Ad Loaded",
-						"display-text": "Is interstitial ad loaded",
-						"description": "Checks if an interstitial ad is loaded."
-					},
-					"on-rewarded-ad-loaded": {
-						"list-name": "On Ad Loaded",
-						"display-text": "On rewarded ad loaded",
-						"description": "Triggered when a rewarded ad is successfully loaded."
-					},
-					"on-rewarded-ad-failed-to-load": {
-						"list-name": "On Ad Failed to Load",
-						"display-text": "On rewarded ad failed to load",
-						"description": "Triggered when a rewarded ad fails to load."
-					},
-					"on-rewarded-ad-failed-to-show": {
-						"list-name": "On Ad Failed to Show",
-						"display-text": "On rewarded ad failed to show",
-						"description": "Triggered when a rewarded ad fails to show."
-					},
-					"on-rewarded-ad-showed": {
-						"list-name": "On Ad Showed",
-						"display-text": "On rewarded ad showed",
-						"description": "Triggered when a rewarded ad is shown."
-					},
-					"on-rewarded-ad-clicked": {
-						"list-name": "On Ad Clicked",
-						"display-text": "On rewarded ad clicked",
-						"description": "Triggered when a rewarded ad is clicked."
-					},
-					"on-rewarded-ad-dismissed": {
-						"list-name": "On Ad Dismissed",
-						"display-text": "On rewarded ad dismissed",
-						"description": "Triggered when a rewarded ad is dismissed."
-					},
-					"on-rewarded-ad-user-earned-reward": {
-						"list-name": "On Ad User Earned Reward",
-						"display-text": "On rewarded ad user earned reward",
-						"description": "Triggered when the user earns a reward from a rewarded ad."
-					},
-					"on-rewarded-ad-canceled-by-user": {
-						"list-name": "On Ad Canceled by User",
-						"display-text": "On rewarded ad canceled by user",
-						"description": "Triggered when the user cancel a rewarded ad and must not earn reward."
-					},
-					"is-rewarded-ad-loaded": {
-						"list-name": "Is Ad Loaded",
-						"display-text": "Is rewarded ad loaded",
-						"description": "Checks if a rewarded ad is loaded."
 					}
 				},
 				"expressions": {

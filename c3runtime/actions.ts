@@ -20,6 +20,7 @@ const C3 = globalThis.C3;
 
 C3.Plugins.CASAI_MobileAds.Acts = {
     // MARK: General
+
     async ShowConsentForm(this: SDKInstanceClass, ifRequired: boolean) {
         return this._showConsentForm(ifRequired);
     },

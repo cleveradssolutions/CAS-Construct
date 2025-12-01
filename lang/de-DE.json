@@ -1,0 +1,552 @@
+{
+	"$schema": "../schema/plugin.lang.schema.json",
+	"languageTag": "de-DE",
+	"fileDescription": "Zeichenketten für CAS.AI Mobile Ads.",
+	"text": {
+		"plugins": {
+			"casai_mobileads": {
+				"name": "CAS.AI Mobile Ads",
+				"description": "Das CAS.AI-Plugin für Construct ermöglicht die einfache Monetarisierung Ihrer Apps für iOS und Android mithilfe vieler Werbenetzwerk-SDKs in der Mediation.",
+				"help-url": "https://docs.page/cleveradssolutions/docs/Construct",
+				"properties": {
+					"integration-ios": {
+						"name": "iOS-Integration",
+						"desc": "Konfigurieren Sie die Mediation für iOS (Adapter)."
+					},
+					"ios-cas-id": {
+						"name": "CAS Id (iTunes Id)",
+						"desc": "In den meisten Fällen ist die CAS ID gleich wie Ihre App Store-ID. Lassen Sie den Wert 'demo' nur zum Testen."
+					},
+					"ios-solutions": {
+						"name": "Lösungen",
+						"desc": "Mediationslösung für iOS einbinden. Gültige Werte 'Optimal' oder 'Famileis', und '-' zum Deaktivieren."
+					},
+					"ios-adapters": {
+						"name": "Adapter",
+						"desc": "Liste der Mediations-Adapternamen für iOS, getrennt durch ',', ';' oder Leerzeichen. Zum Beispiel: 'GoogleAds,IronSource,DTExchange'"
+					},
+					"ios-adapters-link": {
+						"name": "Adapter",
+						"link-text": "Adapter-Tabelle",
+						"desc": "Tabelle der unterstützten Adapter für die iOS-Plattform."
+					},
+					"ios-tracking-usage": {
+						"name": "Tracking-Nutzungsbeschreibung",
+						"desc": "Erforderlich, um die App Tracking Transparency-Autorisierungsanfrage für den Zugriff auf die IDFA unter iOS anzuzeigen."
+					},
+					"integration-android": {
+						"name": "Android-Integration",
+						"desc": "Konfigurieren Sie die Mediation für Android (Adapter)."
+					},
+					"android-solutions": {
+						"name": "Lösungen",
+						"desc": "Mediationslösung für Android einbinden. Gültige Werte 'Optimal' oder 'Famileis', und '-' zum Deaktivieren."
+					},
+					"android-adapters": {
+						"name": "Adapter",
+						"desc": "Liste der Mediations-Adapternamen für Android, getrennt durch ',', ';' oder Leerzeichen. Zum Beispiel: 'googleAds,ironSource,dtExchange'"
+					},
+					"android-adapters-link": {
+						"name": "Adapter",
+						"link-text": "Adapter-Tabelle",
+						"desc": "Tabelle der unterstützten Adapter für die Android-Plattform."
+					},
+					"android-use-ad-id": {
+						"name": "Ad ID verwenden",
+						"desc": "Darf Google AD_ID verwendet werden. Gültige Werte 'true' und 'false'."
+					},
+					"app-info": {
+						"name": "App-Informationen",
+						"desc": "Füllen Sie Ihre App-Informationen aus, um das Anzeigen-Targeting für Ihre Benutzer zu verbessern."
+					},
+					"target-audience": {
+						"name": "Zielgruppe",
+						"desc": "Gibt die Zielgruppe der App für regulatorische und inhaltliche Zwecke an. Dies kann sich auf die Datenerfassung, Personalisierung und Inhaltswiedergabe auswirken, besonders für Zielgruppen wie Kinder. Der Wert kann unbekannt bleiben, dann werden die Einstellungen unserer Plattform angewendet.",
+						"items": {
+							"unknown": "Unbekannt",
+							"children": "Kinder",
+							"not-children": "Nicht für Kinder"
+						}
+					},
+					"app-keywords": {
+						"name": "App-Schlüsselwörter",
+						"desc": "Legt eine Liste von Schlüsselwörtern, Interessen oder Absichten fest, die mit Ihrer App verbunden sind, getrennt durch ','. Wörter oder Sätze, die die aktuelle Benutzeraktivität für Targeting-Zwecke beschreiben."
+					},
+					"app-content-url": {
+						"name": "App-Inhalts-URL",
+						"desc": "Legt die Inhalts-URL für eine Website fest, deren Inhalte den primären Inhalten der App entsprechen. Dieser Website-Inhalt wird zum Targeting und zur Markensicherheit verwendet."
+					},
+					"mediation-extras": {
+						"name": "Mediation Extras",
+						"desc": "Zusätzliche benutzerdefinierte Parameter, die an Mediationsnetzwerke übergeben werden. Im JSON-Format."
+					},
+					"automation": {
+						"name": "Automatisierungsoptionen",
+						"desc": "CAS bietet Automatisierungsfunktionen, um die Arbeit mit Anzeigen zu vereinfachen."
+					},
+					"auto-show-consent-form": {
+						"name": "Zustimmungsformular automatisch anzeigen, falls erforderlich",
+						"desc": "CAS lädt ein Formular und zeigt es beim Start an, wenn Zustimmung erforderlich ist. Zeigt das Formular nur an, wenn es erforderlich ist und der Benutzer zuvor nicht geantwortet hat."
+					},
+					"auto-load-banner": {
+						"name": "Banner automatisch laden",
+						"desc": "Lädt Banner automatisch und versucht erneut, wenn beim Laden ein Fehler auftritt. Hinweis: Für das automatische Laden müssen Sie das Banner mindestens einmal manuell laden und die erforderliche Größe angeben."
+					},
+					"auto-refresh-banner": {
+						"name": "Banner automatisch aktualisieren",
+						"desc": "Intervall (in Sekunden) zum Aktualisieren von Bannern. Nach Ablauf des Intervalls wird automatisch ein neues Banner geladen und angezeigt. Setzen Sie 0, um die automatische Aktualisierung zu deaktivieren."
+					},
+					"auto-load-mrec": {
+						"name": "MREC automatisch laden",
+						"desc": "Lädt MREC automatisch beim Start und versucht erneut, wenn beim Laden ein Fehler auftritt."
+					},
+					"auto-refresh-mrec": {
+						"name": "MREC automatisch aktualisieren",
+						"desc": "Intervall (in Sekunden) zum Aktualisieren von MREC. Nach Ablauf des Intervalls wird automatisch ein neues MREC geladen und angezeigt. Setzen Sie 0, um die automatische Aktualisierung zu deaktivieren."
+					},
+					"auto-load-appopen": {
+						"name": "AppOpen automatisch laden",
+						"desc": "Lädt AppOpen automatisch beim Start und nach dem Anzeigen und versucht erneut bei Ladefehlern."
+					},
+					"auto-show-appopen": {
+						"name": "AppOpen automatisch anzeigen",
+						"desc": "Zeigt automatisch Anzeigen an, wenn der Benutzer eine zuvor gestartete App fortsetzt. Dies bedeutet nicht, dass die Anzeige sofort nach dem Laden angezeigt wird."
+					},
+					"auto-load-inter": {
+						"name": "Interstitial automatisch laden",
+						"desc": "Lädt Interstitial automatisch beim Start und nach dem Anzeigen und versucht erneut bei Ladefehlern."
+					},
+					"auto-show-inter": {
+						"name": "Interstitial automatisch anzeigen",
+						"desc": "Zeigt automatisch Interstitial an, wenn der Benutzer eine zuvor gestartete App fortsetzt. Dies bedeutet nicht, dass die Anzeige sofort nach dem Laden angezeigt wird."
+					},
+					"min-interval-inter": {
+						"name": "Minimales Intervall zwischen Interstitial-Anzeigen",
+						"desc": "Mindestzeit (in Sekunden) zwischen den Anzeigungen von Interstitial-Anzeigen."
+					},
+					"auto-load-reward": {
+						"name": "Rewarded automatisch laden",
+						"desc": "Lädt Rewarded automatisch beim Start und nach dem Anzeigen und versucht erneut bei Ladefehlern."
+					},
+					"collect-location": {
+						"name": "Standort erfassen",
+						"desc": "Erfasst vom Gerät Breitengrad und Längengrad, gerundet auf Hundertstel."
+					},
+					"trial-ad-free-interval": {
+						"name": "Werbefreier Testzeitraum",
+						"desc": "Intervall (in Sekunden) ab dem Zeitpunkt der ersten App-Installation, während dem Benutzer die App ohne Werbeanzeigen nutzen können und gleichzeitig Zugriff auf das Rewarded-Format behalten."
+					},
+					"development": {
+						"name": "Entwicklungsoptionen",
+						"desc": "Wir empfehlen dringend, den Testanzeigemodus zu aktivieren, wenn Sie die Integration validieren. Wenn Sie zu viel auf Anzeigen klicken, ohne im Testmodus zu sein, besteht das Risiko, dass Ihr Konto wegen ungültiger Aktivität gekennzeichnet wird."
+					},
+					"force-test-ads": {
+						"name": "Testanzeigen erzwingen",
+						"desc": "Aktivieren Sie den Testanzeigemodus, der immer Testanzeigen für alle Geräte zurückgibt. [b]Vergessen Sie nicht, dies nach den Tests auf False zu setzen.[/b]"
+					},
+					"test-device-ids": {
+						"name": "Test-Geräte-IDs",
+						"desc": "Liste der Test-Geräte-IDs, die immer Testanzeigen anfordern. Trennzeichen ','"
+					},
+					"debug-logging": {
+						"name": "Debug-Protokollierung",
+						"desc": "Der aktivierte Debug-Modus zeigt viele nützliche Informationen über den Zustand des SDK mit dem Protokoll-Tag CAS.AI an. Wenn Sie ein Problem bei der Arbeit mit CAS entdeckt haben, stellen Sie uns bitte eine Problembeschreibung zusammen mit dem vollständigen Geräteprotokoll zur Verfügung."
+					},
+					"debug-geography": {
+						"name": "Debug-Geographie",
+						"desc": "Überschreibt die erkannte Geographie zum Testen des Datenschutzverhaltens. Wirkt sich nur auf Testsitzungen aus.",
+						"items": {
+							"unknown": "Unbekannt",
+							"eea": "Europäischer Wirtschaftsraum",
+							"us": "Regulierter US-Bundesstaat",
+							"other": "Nicht reguliert"
+						}
+					}
+				},
+				"aceCategories": {
+					"general": "0. Allgemeines",
+					"banner-ads": "1. Banner-Anzeigen",
+					"mrec-ads": "2. MREC-Anzeigen",
+					"appopen-ads": "3. AppOpen-Anzeigen",
+					"interstitial-ads": "4. Interstitial-Anzeigen",
+					"rewarded-ads": "5. Rewarded-Anzeigen"
+				},
+				"conditions": {
+					"on-consent-form-dismissed": {
+						"list-name": "Nach dem Schließen des Zustimmungsformulars",
+						"display-text": "Nach dem Schließen des Zustimmungsformulars",
+						"description": "Wird ausgelöst, wenn das Zustimmungsformular nach der CAS-Initialisierung oder manuellem Anzeigen des Formulars geschlossen wird."
+					},
+					"on-consent-required": {
+						"list-name": "Zustimmung erforderlich",
+						"display-text": "Zustimmung erforderlich",
+						"description": "Wird ausgelöst, wenn Benutzerzustimmung erforderlich ist, nachdem CAS initialisiert oder das Zustimmungsformular angezeigt wurde."
+					},
+					"on-consent-not-required": {
+						"list-name": "Zustimmung nicht erforderlich",
+						"display-text": "Zustimmung nicht erforderlich",
+						"description": "Wird ausgelöst, wenn Benutzerzustimmung nicht erforderlich ist, nachdem CAS initialisiert oder das Zustimmungsformular angezeigt wurde."
+					},
+					"is-consent-required": {
+						"list-name": "Ist Zustimmung erforderlich",
+						"display-text": "Ist Zustimmung erforderlich",
+						"description": "Überprüft, ob Benutzerzustimmung erforderlich ist."
+					},
+					"on-banner-ad-loaded": {
+						"list-name": "Wenn Banner geladen wird",
+						"display-text": "Wenn Banner geladen wird",
+						"description": "Wird ausgelöst, wenn ein Banner erfolgreich geladen wird."
+					},
+					"on-banner-ad-failed-to-load": {
+						"list-name": "Wenn Banner nicht geladen wird",
+						"display-text": "Wenn Banner nicht geladen werden konnte",
+						"description": "Wird ausgelöst, wenn ein Banner nicht geladen werden konnte."
+					},
+					"on-banner-ad-clicked": {
+						"list-name": "Wenn auf Banner geklickt wird",
+						"display-text": "Wenn auf Banner geklickt wird",
+						"description": "Wird ausgelöst, wenn auf ein Banner geklickt wird."
+					},
+					"is-banner-ad-loaded": {
+						"list-name": "Ist Banner geladen",
+						"display-text": "Ist Banner geladen",
+						"description": "Überprüft, ob ein Banner geladen ist."
+					},
+					"on-mrec-ad-loaded": {
+						"list-name": "Wenn MREC geladen wird",
+						"display-text": "Wenn MREC geladen wird",
+						"description": "Wird ausgelöst, wenn ein MREC (mittleres Rechteck) erfolgreich geladen wird."
+					},
+					"on-mrec-ad-failed-to-load": {
+						"list-name": "Wenn MREC nicht geladen wird",
+						"display-text": "Wenn MREC nicht geladen werden konnte",
+						"description": "Wird ausgelöst, wenn ein MREC nicht geladen werden konnte."
+					},
+					"on-mrec-ad-clicked": {
+						"list-name": "Wenn auf MREC geklickt wird",
+						"display-text": "Wenn auf MREC geklickt wird",
+						"description": "Wird ausgelöst, wenn auf ein MREC geklickt wird."
+					},
+					"is-mrec-ad-loaded": {
+						"list-name": "Ist MREC geladen",
+						"display-text": "Ist MREC geladen",
+						"description": "Überprüft, ob ein MREC geladen ist."
+					},
+					"on-app-open-ad-loaded": {
+						"list-name": "Wenn AppOpen geladen wird",
+						"display-text": "Wenn AppOpen geladen wird",
+						"description": "Wird ausgelöst, wenn ein AppOpen erfolgreich geladen wird."
+					},
+					"on-app-open-ad-failed-to-load": {
+						"list-name": "Wenn AppOpen nicht geladen wird",
+						"display-text": "Wenn AppOpen nicht geladen werden konnte",
+						"description": "Wird ausgelöst, wenn ein AppOpen nicht geladen werden konnte."
+					},
+					"on-app-open-ad-failed-to-show": {
+						"list-name": "Wenn AppOpen nicht angezeigt werden kann",
+						"display-text": "Wenn AppOpen nicht angezeigt werden kann",
+						"description": "Wird ausgelöst, wenn ein AppOpen nicht angezeigt werden kann."
+					},
+					"on-app-open-ad-showed": {
+						"list-name": "Nach Anzeige von AppOpen",
+						"display-text": "AppOpen angezeigt",
+						"description": "Wird ausgelöst, wenn ein AppOpen angezeigt wird."
+					},
+					"on-app-open-ad-clicked": {
+						"list-name": "Wenn auf AppOpen geklickt wird",
+						"display-text": "Wenn auf AppOpen geklickt wird",
+						"description": "Wird ausgelöst, wenn auf ein AppOpen geklickt wird."
+					},
+					"on-app-open-ad-dismissed": {
+						"list-name": "Nach Schließen von AppOpen",
+						"display-text": "AppOpen geschlossen",
+						"description": "Wird ausgelöst, wenn ein AppOpen geschlossen wird."
+					},
+					"is-app-open-ad-loaded": {
+						"list-name": "Ist AppOpen geladen",
+						"display-text": "Ist AppOpen geladen",
+						"description": "Überprüft, ob ein AppOpen geladen ist."
+					},
+					"on-interstitial-ad-loaded": {
+						"list-name": "Wenn Interstitial geladen wird",
+						"display-text": "Wenn Interstitial geladen wird",
+						"description": "Wird ausgelöst, wenn ein Interstitial erfolgreich geladen wird."
+					},
+					"on-interstitial-ad-failed-to-load": {
+						"list-name": "Wenn Interstitial nicht geladen wird",
+						"display-text": "Wenn Interstitial nicht geladen werden konnte",
+						"description": "Wird ausgelöst, wenn ein Interstitial nicht geladen werden konnte."
+					},
+					"on-interstitial-ad-failed-to-show": {
+						"list-name": "Wenn Interstitial nicht angezeigt werden kann",
+						"display-text": "Wenn Interstitial nicht angezeigt werden kann",
+						"description": "Wird ausgelöst, wenn ein Interstitial nicht angezeigt werden kann."
+					},
+					"on-interstitial-ad-showed": {
+						"list-name": "Nach Anzeige von Interstitial",
+						"display-text": "Interstitial angezeigt",
+						"description": "Wird ausgelöst, wenn ein Interstitial angezeigt wird."
+					},
+					"on-interstitial-ad-clicked": {
+						"list-name": "Wenn auf Interstitial geklickt wird",
+						"display-text": "Wenn auf Interstitial geklickt wird",
+						"description": "Wird ausgelöst, wenn auf ein Interstitial geklickt wird."
+					},
+					"on-interstitial-ad-dismissed": {
+						"list-name": "Nach Schließen von Interstitial",
+						"display-text": "Interstitial geschlossen",
+						"description": "Wird ausgelöst, wenn ein Interstitial geschlossen wird."
+					},
+					"is-interstitial-ad-loaded": {
+						"list-name": "Ist Interstitial geladen",
+						"display-text": "Ist Interstitial geladen",
+						"description": "Überprüft, ob ein Interstitial geladen ist."
+					},
+					"on-rewarded-ad-loaded": {
+						"list-name": "Wenn Rewarded geladen wird",
+						"display-text": "Wenn Rewarded geladen wird",
+						"description": "Wird ausgelöst, wenn ein Rewarded erfolgreich geladen wird."
+					},
+					"on-rewarded-ad-failed-to-load": {
+						"list-name": "Wenn Rewarded nicht geladen wird",
+						"display-text": "Wenn Rewarded nicht geladen werden konnte",
+						"description": "Wird ausgelöst, wenn ein Rewarded nicht geladen werden konnte."
+					},
+					"on-rewarded-ad-failed-to-show": {
+						"list-name": "Wenn Rewarded nicht angezeigt werden kann",
+						"display-text": "Wenn Rewarded nicht angezeigt werden kann",
+						"description": "Wird ausgelöst, wenn ein Rewarded nicht angezeigt werden kann."
+					},
+					"on-rewarded-ad-showed": {
+						"list-name": "Nach Anzeige von Rewarded",
+						"display-text": "Rewarded angezeigt",
+						"description": "Wird ausgelöst, wenn ein Rewarded angezeigt wird."
+					},
+					"on-rewarded-ad-clicked": {
+						"list-name": "Wenn auf Rewarded geklickt wird",
+						"display-text": "Wenn auf Rewarded geklickt wird",
+						"description": "Wird ausgelöst, wenn auf ein Rewarded geklickt wird."
+					},
+					"on-rewarded-ad-dismissed": {
+						"list-name": "Nach Schließen von Rewarded",
+						"display-text": "Rewarded geschlossen",
+						"description": "Wird ausgelöst, wenn ein Rewarded geschlossen wird."
+					},
+					"on-rewarded-ad-user-earned-reward": {
+						"list-name": "Wenn Benutzer Belohnung verdient",
+						"display-text": "Wenn Benutzer Belohnung von Rewarded verdient",
+						"description": "Wird ausgelöst, wenn der Benutzer eine Belohnung aus einem Rewarded-Ad verdient."
+					},
+					"on-rewarded-ad-canceled-by-user": {
+						"list-name": "Rewarded vom Benutzer abgebrochen",
+						"display-text": "Rewarded vom Benutzer abgebrochen",
+						"description": "Wird ausgelöst, wenn der Benutzer ein Rewarded abbricht und keine Belohnung erhalten sollte."
+					},
+					"is-rewarded-ad-loaded": {
+						"list-name": "Ist Rewarded geladen",
+						"display-text": "Ist Rewarded geladen",
+						"description": "Überprüft, ob ein Rewarded geladen ist."
+					}
+				},
+				"actions": {
+					"show-consent-form": {
+						"list-name": "Zustimmungsformular anzeigen",
+						"display-text": "Zustimmungsformular anzeigen, falls erforderlich [i]{0}[/i]",
+						"description": "Zeigt dem Benutzer das Zustimmungsformular an",
+						"params": {
+							"if-required-only": {
+								"name": "Nur wenn erforderlich",
+								"desc": "Zeigt das Zustimmungsformular nur an, wenn es erforderlich ist und der Benutzer zuvor nicht geantwortet hat."
+							}
+						}
+					},
+					"set-ad-sounds-muted": {
+						"list-name": "Anzeigensounds stummschalten",
+						"display-text": "Anzeigensounds stummschalten in [i]{0}[/i]",
+						"description": "Gibt an, ob die Sounds der App stumm geschaltet sind. Wirkt sich auf den anfänglichen Stummschaltungsstatus für Vollbild-Anzeigen aus. Verwenden Sie diese Aktion nur, wenn Ihre App über eigene Lautstärkeregler verfügt (z. B. Musik oder Soundeffekte).",
+						"params": {
+							"is-muted": {
+								"name": "Stummgeschaltet",
+								"desc": "Anfänglicher Stummschaltungsstatus für Vollbild-Anzeigen."
+							}
+						}
+					},
+					"load-banner-ad": {
+						"list-name": "Banner laden",
+						"display-text": "[i]{0}[/i] Banner mit Limits laden ([i]{1}[/i], [i]{2}[/i])",
+						"description": "Lädt ein Banner mit einer bestimmten Größe. [b]Die Anzeige wird nicht angezeigt, bis die Anzeige-Aktion ausgeführt wird.[/b] Diese Aktion funktioniert asynchron; verwenden Sie die Aktion 'Wait for previous actions to complete', um auf das Laden oder Fehler zu warten.",
+						"params": {
+							"ad-size": {
+								"name": "Anzeigengröße",
+								"desc": "Die Größe des Banners. Das Banner kann zu jeder Zeit nur eine Größe haben. Das Aufrufen der Ladefunktion mit einer anderen Größe zerstört das vorherige Banner und lädt ein neues.",
+								"items": {
+									"adaptive": "Adaptive",
+									"inline": "Inline",
+									"smart": "Smart",
+									"leaderboard": "Leaderboard",
+									"standard": "Standard"
+								}
+							},
+							"max-width": {
+								"name": "Max Breite",
+								"desc": "Die maximale Breite des Banners in DP. Lassen Sie 0 für keine Begrenzung. Wird nur für Adaptive und Inline Banner verwendet."
+							},
+							"max-height": {
+								"name": "Max Höhe",
+								"desc": "Die maximale Höhe des Banners in DP. Lassen Sie 0 für keine Begrenzung. Wird nur für Inline Banner verwendet."
+							}
+						}
+					},
+					"show-banner-ad": {
+						"list-name": "Banner anzeigen",
+						"display-text": "Banner anzeigen bei [i]{0}[/i] mit Offset ([i]{1}[/i], [i]{2}[/i])",
+						"description": "Zeigt das Banner an der angegebenen Position mit optionalen Offsets an. Die Position des Banners kann jederzeit durch Ausführen dieser Aktion mit neuen Parametern geändert werden.",
+						"params": {
+							"position": {
+								"name": "Position",
+								"desc": "Die Position auf dem Bildschirm zum Anzeigen des Banners. CAS erlaubt nicht, dass eine Anzeige außerhalb des Bildschirms platziert oder mit Bildschirmausschnitten überlappt wird. Einige Positionen unterstützen keine Offsets auf der X- oder Y-Achse, wie in Klammern angegeben.",
+								"items": {
+									"top-center": "Oben in der Mitte (Y)",
+									"top-left": "Oben links (X, Y)",
+									"top-right": "Oben rechts (X, Y)",
+									"bottom-center": "Unten in der Mitte (-)",
+									"bottom-left": "Unten links (X)",
+									"bottom-right": "Unten rechts (X)",
+									"middle-center": "Mitte in der Mitte (Y)",
+									"middle-left": "Mitte links (X, Y)",
+									"middle-right": "Mitte rechts (X, Y)"
+								}
+							},
+							"x-offset": {
+								"name": "X-Offset",
+								"desc": "Der horizontale Offset von der angegebenen Position in DP. Lassen Sie 0 für keinen Offset."
+							},
+							"y-offset": {
+								"name": "Y-Offset",
+								"desc": "Der vertikale Offset von der angegebenen Position in DP. Lassen Sie 0 für keinen Offset."
+							}
+						}
+					},
+					"hide-banner-ad": {
+						"list-name": "Banner ausblenden",
+						"display-text": "Banner ausblenden",
+						"description": "Blendet das derzeit angezeigte Banner aus."
+					},
+					"destroy-banner-ad": {
+						"list-name": "Banner zerstören",
+						"display-text": "Banner zerstören",
+						"description": "Zerstört die Banner-Instanz und gibt Ressourcen frei. Um mit Anzeigen fortzufahren, verwenden Sie die Aktion zum Laden von Anzeigen."
+					},
+					"load-mrec-ad": {
+						"list-name": "MREC laden",
+						"display-text": "MREC laden",
+						"description": "Lädt ein MREC (mittleres Rechteck). [b]Die Anzeige wird nicht angezeigt, bis die Anzeige-Aktion ausgeführt wird.[/b] Diese Aktion funktioniert asynchron; verwenden Sie die Aktion 'Wait for previous actions to complete', um auf das Laden oder Fehler zu warten."
+					},
+					"show-mrec-ad": {
+						"list-name": "MREC anzeigen",
+						"display-text": "MREC anzeigen bei [i]{0}[/i] mit Offset ([i]{1}[/i], [i]{2}[/i])",
+						"description": "Zeigt das MREC an der angegebenen Position mit optionalen Offsets an. Die Position kann jederzeit durch Ausführen der Aktion mit neuen Parametern geändert werden.",
+						"params": {
+							"position": {
+								"name": "Position",
+								"desc": "Die Position auf dem Bildschirm zum Anzeigen des MREC. CAS erlaubt nicht, dass eine Anzeige außerhalb des Bildschirms platziert oder mit Bildschirmausschnitten überlappt wird. Einige Positionen unterstützen keine Offsets auf der X- oder Y-Achse.",
+								"items": {
+									"top-center": "Oben in der Mitte (Y)",
+									"top-left": "Oben links (X, Y)",
+									"top-right": "Oben rechts (X, Y)",
+									"bottom-center": "Unten in der Mitte (-)",
+									"bottom-left": "Unten links (X)",
+									"bottom-right": "Unten rechts (X)",
+									"middle-center": "Mitte in der Mitte (Y)",
+									"middle-left": "Mitte links (X, Y)",
+									"middle-right": "Mitte rechts (X, Y)"
+								}
+							},
+							"x-offset": {
+								"name": "X-Offset",
+								"desc": "Der horizontale Offset von der angegebenen Position in DP. Lassen Sie 0 für keinen Offset."
+							},
+							"y-offset": {
+								"name": "Y-Offset",
+								"desc": "Der vertikale Offset von der angegebenen Position in DP. Lassen Sie 0 für keinen Offset."
+							}
+						}
+					},
+					"hide-mrec-ad": {
+						"list-name": "MREC ausblenden",
+						"display-text": "MREC ausblenden",
+						"description": "Blendet das derzeit angezeigte MREC aus."
+					},
+					"destroy-mrec-ad": {
+						"list-name": "MREC zerstören",
+						"display-text": "MREC zerstören",
+						"description": "Zerstört die MREC-Instanz und gibt Ressourcen frei. Um mit Anzeigen fortzufahren, verwenden Sie die Ladefunktion."
+					},
+					"load-app-open-ad": {
+						"list-name": "AppOpen laden",
+						"display-text": "AppOpen laden",
+						"description": "Lädt ein AppOpen. Diese Aktion funktioniert asynchron; verwenden Sie die Aktion 'Wait for previous actions to complete', um auf das Laden oder Fehler zu warten."
+					},
+					"show-app-open-ad": {
+						"list-name": "AppOpen anzeigen",
+						"display-text": "AppOpen anzeigen",
+						"description": "Zeigt ein AppOpen an. Sie müssen nicht überprüfen, ob die Anzeige geladen wurde, bevor Sie sie anzeigen. Diese Aktion funktioniert asynchron; verwenden Sie die Aktion 'Wait for previous actions to complete', um auf das Schließen oder Fehler zu warten."
+					},
+					"destroy-app-open-ad": {
+						"list-name": "AppOpen zerstören",
+						"display-text": "AppOpen zerstören",
+						"description": "Zerstört die AppOpen-Instanz und gibt Ressourcen frei. Um mit Anzeigen fortzufahren, verwenden Sie die Ladefunktion."
+					},
+					"load-interstitial-ad": {
+						"list-name": "Interstitial laden",
+						"display-text": "Interstitial laden",
+						"description": "Lädt ein Interstitial. Diese Aktion funktioniert asynchron; verwenden Sie die Aktion 'Wait for previous actions to complete', um auf das Laden oder Fehler zu warten."
+					},
+					"show-interstitial-ad": {
+						"list-name": "Interstitial anzeigen",
+						"display-text": "Interstitial anzeigen",
+						"description": "Zeigt ein Interstitial an. Sie müssen nicht überprüfen, ob die Anzeige geladen wurde, bevor Sie sie anzeigen. Diese Aktion funktioniert asynchron; verwenden Sie die Aktion 'Wait for previous actions to complete', um auf das Schließen oder Fehler zu warten."
+					},
+					"destroy-interstitial-ad": {
+						"list-name": "Interstitial zerstören",
+						"display-text": "Interstitial zerstören",
+						"description": "Zerstört die Interstitial-Instanz und gibt Ressourcen frei. Um mit Anzeigen fortzufahren, verwenden Sie die Ladefunktion."
+					},
+					"load-rewarded-ad": {
+						"list-name": "Rewarded laden",
+						"display-text": "Rewarded laden",
+						"description": "Lädt eine Rewarded-Anzeige. Diese Aktion funktioniert asynchron; verwenden Sie die Aktion 'Wait for previous actions to complete', um auf das Laden oder Fehler zu warten."
+					},
+					"show-rewarded-ad": {
+						"list-name": "Rewarded anzeigen",
+						"display-text": "Rewarded anzeigen",
+						"description": "Zeigt eine Rewarded-Anzeige an. Verwenden Sie den Trigger 'On Ad User Earned Reward', um den Benutzer zu belohnen. Sie müssen nicht überprüfen, ob die Anzeige geladen wurde, bevor Sie sie anzeigen. Diese Aktion funktioniert asynchron; verwenden Sie die Aktion 'Wait for previous actions to complete', um auf das Schließen oder Fehler zu warten."
+					},
+					"destroy-rewarded-ad": {
+						"list-name": "Rewarded zerstören",
+						"display-text": "Rewarded zerstören",
+						"description": "Zerstört die Rewarded-Instanz und gibt Ressourcen frei. Um mit Anzeigen fortzufahren, verwenden Sie die Ladefunktion."
+					}
+				},
+				"expressions": {
+					"initialization-error": {
+						"description": "Ruft die Initialisierungsfehlermeldung ab, falls vorhanden.",
+						"translated-name": "Initialisierungsfehler"
+					},
+					"user-country-code": {
+						"description": "Ruft den ISO2-Ländercode des Benutzers basierend auf seiner IP-Adresse ab. Zum Beispiel: 'US' oder '--' wenn unbekannt.",
+						"translated-name": "Ländercode des Benutzers"
+					},
+					"consent-status": {
+						"description": "Ruft den aktuellen Status des Zustimmungsformulars ab: 'Unknown', 'Obtained' 'Not required', 'Unavailable', 'Internal error', 'Network error', 'Invalid context', 'Still presenting'",
+						"translated-name": "Zustimmungsstatus"
+					},
+					"error-message": {
+						"description": "Im Falle eines Fehlers (Laden/Anzeigen) die damit verbundene Fehlermeldung.",
+						"translated-name": "Fehlermeldung"
+					}
+				}
+			}
+		}
+	}
+}

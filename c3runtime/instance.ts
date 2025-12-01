@@ -24,6 +24,7 @@ interface FormatState {
     Rewarded: boolean;
 }
 
+// Same array from this._info.SetProperties()
 // Groups not included to paramters array
 const enum InitParameter {
     casIdIOSProp,
@@ -55,22 +56,23 @@ const enum InitParameter {
     debug_logging, // check
     debug_geography, // combo
     count, // service value
-};
+}
 
 const DebugGeogrpahyValues: PrivacyGeography[] = ["unknown", "eea", "us", "unregulated"];
 const AudienceValues: AdAudience[] = [undefined, "children", "notchildren"];
 const AdSizeValue: BannerAdSize[] = ["A", "I", "S", "L", "B"];
+type AdInfo = AdInfoEvent | { format: AdFormat };
 
 class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
     _isAutoLoad: FormatState;
     _isAutoShow: FormatState;
     _isLoaded: FormatState;
 
-    _autoRefreshBanner: number;
-    _autoRefreshMREC: number;
-    _minIntervalInterstitial: number;
+    _autoRefreshBanner?: number;
+    _autoRefreshMREC?: number;
+    _minIntervalInterstitial?: number;
+    _debugGeography?: PrivacyGeography;
     _showConsentFormIfRequired: boolean;
-    _debugGeography: PrivacyGeography;
     _isInitialized: boolean;
     _initializationStatus?: InitializationStatus;
     _errorMessage?: string;
@@ -79,14 +81,10 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
 
     constructor() {
         super();
-        
+
         // Initialise object properties
 
-        this._autoRefreshBanner = 30;
-        this._autoRefreshMREC = 30;
-        this._minIntervalInterstitial = 0;
         this._showConsentFormIfRequired = true;
-        this._debugGeography = "eea";
         this._isInitialized = false;
 
         this._isAutoLoad = {
@@ -118,6 +116,9 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         // note properties may be null in some cases
         const props = this._getInitProperties();
         if (props) {
+            if (props.length != InitParameter.count) {
+                throw Error("The init parameters are not synchronized with the runtime code.");
+            }
             this._isAutoLoad.Banner = props[InitParameter.auto_reload_banner] as boolean;
             this._autoRefreshBanner = props[InitParameter.auto_refresh_banner] as number;
             this._isAutoLoad.MREC = props[InitParameter.auto_reload_mrec] as boolean;
@@ -140,34 +141,30 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         globalThis.document.addEventListener("casai_ad_showed", this._onCASShowed, false);
         globalThis.document.addEventListener("casai_ad_clicked", this._onCASClicked, false);
         globalThis.document.addEventListener("casai_ad_dismissed", this._onCASDismissed, false);
+        globalThis.document.addEventListener("casai_ad_reward", this._onCASEarnReward, false);
 
-        if (this._isAutoLoad.MREC) {
-            this._loadMRecAd();
-        }
-        if (this._isAutoLoad.AppOpen) {
-            this._loadAppOpenAd();
-        }
-        if (this._isAutoLoad.Interstitial) {
-            this._loadInterstitialAd();
-        }
-        if (this._isAutoLoad.Rewarded) {
-            this._loadRewardedAd();
-        }
+        // Required delay here to correct work triggers.
+        setTimeout(() => this._runAutomation(), 500);
     }
 
     // MARK: Initialization
 
     _initialize() {
-        if (!this._cordova) {
-            return;
-        }
         if (this._isInitialized) {
             if (this._initializationStatus && this._initializationStatus.error) {
-                this._cordova.initialize({}).then(this._onCASInitialized);
+                this._cordova?.initialize({}).then(this._onCASInitialized);
             }
             return;
         }
         this._isInitialized = true;
+
+        if (!this._cordova) {
+            this._onCASInitialized({
+                isConsentRequired: true,
+                consentFlowStatus: "Obtained",
+            });
+            return;
+        }
 
         var targetAudience = undefined;
         var forceTestAds = undefined;
@@ -175,10 +172,6 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         var mediationExtras = undefined;
         const props = this._getInitProperties();
         if (props) {
-            if (props.length != InitParameter.count) {
-                throw Error("The init parameters are not synchronized with the runtime code.");
-            }
-
             let targetAudienceId = props[InitParameter.target_audience] as number;
             targetAudience = AudienceValues[targetAudienceId];
             forceTestAds = props[InitParameter.force_test_ads] as boolean;
@@ -222,6 +215,21 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
             .then(this._onCASInitialized);
     }
 
+    _runAutomation() {
+        if (this._isAutoLoad.MREC) {
+            this._loadMRecAd();
+        }
+        if (this._isAutoLoad.AppOpen) {
+            this._loadAppOpenAd();
+        }
+        if (this._isAutoLoad.Interstitial) {
+            this._loadInterstitialAd();
+        }
+        if (this._isAutoLoad.Rewarded) {
+            this._loadRewardedAd();
+        }
+    }
+
     async _showConsentForm(ifRequired: boolean) {
         let status = await this._cordova?.showConsentFlow({
             ifRequired: ifRequired,
@@ -255,120 +263,59 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         }
     }
 
-    _onCASLoaded(event: AdInfoEvent) {
+    _onCASLoaded(event: AdInfo) {
         this._isLoaded[event.format] = true;
 
-        switch (event.format) {
-            case "Banner":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnBannerAdLoaded);
-                break;
-            case "MREC":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnMRecAdLoaded);
-                break;
-            case "AppOpen":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnAppOpenAdLoaded);
-                break;
-            case "Interstitial":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnInterstitialAdLoaded);
-                break;
-            case "Rewarded":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdLoaded);
-                break;
-        }
+        let triggerName = "On" + event.format + "AdLoaded";
+        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
     }
 
     _onCASFailedToLoad(event: AdErrorEvent) {
         this._isLoaded[event.format] = false;
         this._errorMessage = event.message;
-
-        switch (event.format) {
-            case "Banner":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnBannerAdFailedToLoad);
-                break;
-            case "MREC":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnMRecAdFailedToLoad);
-                break;
-            case "AppOpen":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnAppOpenAdFailedToLoad);
-                break;
-            case "Interstitial":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnInterstitialAdFailedToLoad);
-                break;
-            case "Rewarded":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdFailedToLoad);
-                break;
-        }
+        let triggerName = "On" + event.format + "AdFailedToLoad";
+        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
     }
 
     _onCASFailedToShow(event: AdErrorEvent) {
         this._errorMessage = event.message;
-        switch (event.format) {
-            case "AppOpen":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnAppOpenAdFailedToShow);
-                break;
-            case "Interstitial":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnInterstitialAdFailedToShow);
-                break;
-            case "Rewarded":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdFailedToShow);
-                break;
+        let triggerName = "On" + event.format + "AdFailedToShow";
+        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
+    }
+
+    _onCASShowed(event: AdInfo) {
+        let triggerName = "On" + event.format + "AdShowed";
+        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
+    }
+
+    _onCASClicked(event: AdInfo) {
+        let triggerName = "On" + event.format + "AdClicked";
+        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
+    }
+
+    _onCASDismissed(event: AdInfo) {
+        let triggerName = "On" + event.format + "AdDismissed";
+        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
+
+        if (!this._cordova && this._isAutoLoad[event.format]) {
+            setTimeout(() => this._onCASLoaded(event), 1000);
         }
     }
 
-    _onCASShowed(event: AdInfoEvent) {
-        switch (event.format) {
-            case "AppOpen":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnAppOpenAdShowed);
-                break;
-            case "Interstitial":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnInterstitialAdShowed);
-                break;
-            case "Rewarded":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdShowed);
-                break;
-        }
-    }
-
-    _onCASClicked(event: AdInfoEvent) {
-        switch (event.format) {
-            case "Banner":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnBannerAdClicked);
-                break;
-            case "MREC":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnMRecAdClicked);
-                break;
-            case "AppOpen":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnAppOpenAdClicked);
-                break;
-            case "Interstitial":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnInterstitialAdClicked);
-                break;
-            case "Rewarded":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdClicked);
-                break;
-        }
-    }
-
-    _onCASDismissed(event: AdInfoEvent) {
-        switch (event.format) {
-            case "AppOpen":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnAppOpenAdDismissed);
-                break;
-            case "Interstitial":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnInterstitialAdDismissed);
-                break;
-            case "Rewarded":
-                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdDismissed);
-                break;
-        }
+    _onCASEarnReward(event: AdInfo) {
+        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdUserEarnedReward);
     }
 
     // MARK: Banner ads
 
     async _loadBannerAd(adSize: number, maxWidth: number, maxHeight: number) {
         this._initialize();
+        if (!this._cordova) {
+            this._onCASLoaded({ format: "Banner" });
+            return;
+        }
         try {
-            await this._cordova?.bannerAd.load({
+            await this._cordova.bannerAd.load({
                 adSize: AdSizeValue[adSize],
                 maxWidth: maxWidth,
                 maxHeight: maxHeight,
@@ -400,8 +347,12 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
 
     async _loadMRecAd() {
         this._initialize();
+        if (!this._cordova) {
+            this._onCASLoaded({ format: "MREC" });
+            return;
+        }
         try {
-            await this._cordova?.mrecAd.load({
+            await this._cordova.mrecAd.load({
                 autoReload: this._isAutoLoad.Banner,
                 refreshInterval: this._autoRefreshBanner,
             });
@@ -430,8 +381,12 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
 
     async _loadAppOpenAd() {
         this._initialize();
+        if (!this._cordova) {
+            this._onCASLoaded({ format: "AppOpen" });
+            return;
+        }
         try {
-            await this._cordova?.appOpenAd.load({
+            await this._cordova.appOpenAd.load({
                 autoReload: this._isAutoLoad.AppOpen,
                 autoShow: this._isAutoShow.AppOpen,
             });
@@ -441,8 +396,14 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
     }
 
     async _showAppOpenAd() {
+        if (!this._cordova) {
+            let info: AdInfo = { format: "AppOpen" };
+            this._onCASShowed(info);
+            this._onCASDismissed(info);
+            return;
+        }
         try {
-            await this._cordova?.appOpenAd.show();
+            await this._cordova.appOpenAd.show();
         } catch (error: any) {
             // do nothing, event will be triggered
         }
@@ -456,8 +417,12 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
 
     async _loadInterstitialAd() {
         this._initialize();
+        if (!this._cordova) {
+            this._onCASLoaded({ format: "Interstitial" });
+            return;
+        }
         try {
-            await this._cordova?.interstitialAd.load({
+            await this._cordova.interstitialAd.load({
                 autoReload: this._isAutoLoad.Interstitial,
                 autoShow: this._isAutoShow.Interstitial,
                 minInterval: this._minIntervalInterstitial,
@@ -468,8 +433,14 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
     }
 
     async _showInterstitialAd() {
+        if (!this._cordova) {
+            let info: AdInfo = { format: "Interstitial" };
+            this._onCASShowed(info);
+            this._onCASDismissed(info);
+            return;
+        }
         try {
-            await this._cordova?.interstitialAd.show();
+            await this._cordova.interstitialAd.show();
         } catch (error: any) {
             // do nothing, event will be triggered
         }
@@ -483,8 +454,12 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
 
     async _loadRewardedAd() {
         this._initialize();
+        if (!this._cordova) {
+            this._onCASLoaded({ format: "Rewarded" });
+            return;
+        }
         try {
-            await this._cordova?.rewardedAd.load({
+            await this._cordova.rewardedAd.load({
                 autoReload: this._isAutoLoad.Rewarded,
             });
         } catch (error: any) {
@@ -494,15 +469,22 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
 
     async _showRewardedAd() {
         var isUserEarnReward = false;
-        try {
-            let info = await this._cordova?.rewardedAd.show();
-            isUserEarnReward = info?.isUserEarnReward ?? false;
-        } catch (error: any) {
-            // do nothing, event will be triggered
-        }
-        if (isUserEarnReward) {
-            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdUserEarnedReward);
+
+        if (!this._cordova) {
+            isUserEarnReward = true;
+            let info: AdInfo = { format: "Rewarded" };
+            this._onCASShowed(info);
+            this._onCASEarnReward(info);
+            this._onCASDismissed(info);
         } else {
+            try {
+                let info = await this._cordova.rewardedAd.show();
+                isUserEarnReward = info.isUserEarnReward;
+            } catch (error: any) {
+                // do nothing, event will be triggered
+            }
+        }
+        if (!isUserEarnReward) {
             this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdCanceledByUser);
         }
     }
@@ -522,6 +504,7 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         globalThis.document.removeEventListener("casai_ad_showed", this._onCASShowed, false);
         globalThis.document.removeEventListener("casai_ad_clicked", this._onCASClicked, false);
         globalThis.document.removeEventListener("casai_ad_dismissed", this._onCASDismissed, false);
+        globalThis.document.removeEventListener("casai_ad_reward", this._onCASEarnReward, false);
     }
 }
 

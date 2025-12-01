@@ -59,6 +59,7 @@ const PLUGIN_CLASS = (SDK.Plugins.CASAI_MobileAds = class CASMobileAds extends S
         const adaptersAndroidProp = new SDK.PluginProperty("longtext", "android-adapters", "-");
         const useAdIdAndroidProp = new SDK.PluginProperty("text", "android-use-ad-id", "true");
 
+        // Aray must have same order as enum InitParameter in c3runtime/instance.ts 
         this._info.SetProperties([
             new SDK.PluginProperty("group", "integration-ios"),
             casIdIOSProp,

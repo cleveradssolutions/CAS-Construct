@@ -1,0 +1,552 @@
+{
+	"$schema": "../schema/plugin.lang.schema.json",
+	"languageTag": "uk-UA",
+	"fileDescription": "Рядки для CAS.AI Mobile Ads.",
+	"text": {
+		"plugins": {
+			"casai_mobileads": {
+				"name": "CAS.AI Мобільні оголошення",
+				"description": "Плагін CAS.AI для Construct дозволяє легко монетизувати ваші додатки для iOS та Android, використовуючи багато SDK рекламних мереж у медіації.",
+				"help-url": "https://docs.page/cleveradssolutions/docs/Construct",
+				"properties": {
+					"integration-ios": {
+						"name": "Інтеграція iOS",
+						"desc": "Налаштуйте медіацію для iOS (адаптери)."
+					},
+					"ios-cas-id": {
+						"name": "CAS Id (iTunes Id)",
+						"desc": "У більшості випадків CAS ID співпадає з ідентифікатором вашого додатку в App Store. Значення 'demo' залишайте лише для тестування."
+					},
+					"ios-solutions": {
+						"name": "Рішення",
+						"desc": "Включити рішення медіації для iOS. Допустимі значення 'Optimal' або 'Famileis', та '-' для відключення."
+					},
+					"ios-adapters": {
+						"name": "Адаптери",
+						"desc": "Список імен адаптерів медіації для iOS, розділених ',', ';' або пробілом. Наприклад: 'GoogleAds,IronSource,DTExchange'"
+					},
+					"ios-adapters-link": {
+						"name": "Адаптери",
+						"link-text": "Таблиця адаптерів",
+						"desc": "Таблиця підтримуваних адаптерів для платформи iOS."
+					},
+					"ios-tracking-usage": {
+						"name": "Опис використання відстеження",
+						"desc": "Необхідно для показу запиту дозволу App Tracking Transparency для доступу до IDFA на iOS."
+					},
+					"integration-android": {
+						"name": "Інтеграція Android",
+						"desc": "Налаштуйте медіацію для Android (адаптери)."
+					},
+					"android-solutions": {
+						"name": "Рішення",
+						"desc": "Включити рішення медіації для Android. Допустимі значення 'Optimal' або 'Famileis', та '-' для відключення."
+					},
+					"android-adapters": {
+						"name": "Адаптери",
+						"desc": "Список імен адаптерів медіації для Android, розділених ',', ';' або пробілом. Наприклад: 'googleAds,ironSource,dtExchange'"
+					},
+					"android-adapters-link": {
+						"name": "Адаптери",
+						"link-text": "Таблиця адаптерів",
+						"desc": "Таблиця підтримуваних адаптерів для платформи Android."
+					},
+					"android-use-ad-id": {
+						"name": "Використовувати Ad ID",
+						"desc": "Чи дозволено використовувати Google AD_ID. Допустимі значення 'true' та 'false'."
+					},
+					"app-info": {
+						"name": "Інформація про додаток",
+						"desc": "Заповніть інформацію про свій додаток, щоб покращити таргетинг реклами для ваших користувачів."
+					},
+					"target-audience": {
+						"name": "Цільова аудиторія",
+						"desc": "Вказує цільову аудиторію додатка для регуляторних та контентних цілей. Це може вплинути на обробку даних, персоналізацію та показ контенту, особливо для аудиторій, як-от діти. Значення може залишатися невідомим, тоді будуть застосовані налаштування з нашої платформи.",
+						"items": {
+							"unknown": "Невідомо",
+							"children": "Діти",
+							"not-children": "Не для дітей"
+						}
+					},
+					"app-keywords": {
+						"name": "Ключові слова додатка",
+						"desc": "Встановлює список ключових слів, інтересів або намірів, пов’язаних з вашим додатком, розділених ','. Слова або фрази, що описують поточну активність користувача для таргетингу."
+					},
+					"app-content-url": {
+						"name": "URL вмісту додатка",
+						"desc": "Встановлює URL сайту, вміст якого відповідає основному вмісту додатка. Цей вміст використовується для таргетингу та безпеки бренду."
+					},
+					"mediation-extras": {
+						"name": "Додаткові параметри медіації",
+						"desc": "Додаткові кастомні параметри, що передаються мережам медіації. У форматі JSON."
+					},
+					"automation": {
+						"name": "Опції автоматизації",
+						"desc": "CAS пропонує функції автоматизації для спрощення роботи з рекламою."
+					},
+					"auto-show-consent-form": {
+						"name": "Автопоказ форми згоди за потреби",
+						"desc": "CAS завантажує форму і показує її при запуску, якщо потрібен дозвіл. Показує форму лише якщо це необхідно і користувач раніше не відповідав."
+					},
+					"auto-load-banner": {
+						"name": "Автозавантаження Bannerа",
+						"desc": "Автоматично завантажує Bannerи та повторює завантаження при помилках. Увага: для автоматичного завантаження потрібно явно ініціювати завантаження Bannerа хоча б один раз та вказати потрібний розмір."
+					},
+					"auto-refresh-banner": {
+						"name": "Автооновлення Bannerа",
+						"desc": "Інтервал (у секундах) для оновлення Bannerів. Після спливу інтервалу автоматично завантажується й відображається новий Banner. Встановіть 0, щоб відключити автооновлення."
+					},
+					"auto-load-mrec": {
+						"name": "Автозавантаження MREC",
+						"desc": "Автоматично завантажує MREC при запуску і повторює завантаження при помилках."
+					},
+					"auto-refresh-mrec": {
+						"name": "Автооновлення MREC",
+						"desc": "Інтервал (у секундах) для оновлення MREC. Після спливу інтервалу автоматично завантажується й відображається новий MREC. Встановіть 0, щоб відключити автооновлення."
+					},
+					"auto-load-appopen": {
+						"name": "Автозавантаження AppOpen",
+						"desc": "Автоматично завантажує AppOpen при запуску та після показу, а також повторює при помилках завантаження."
+					},
+					"auto-show-appopen": {
+						"name": "Автопоказ AppOpen",
+						"desc": "Автоматично показує оголошення при відновленні попередньо запущеного додатка. Це не означає, що оголошення показується відразу після завантаження."
+					},
+					"auto-load-inter": {
+						"name": "Автозавантаження Interstitial",
+						"desc": "Автоматично завантажує Interstitial при запуску та після показу, а також повторює при помилках завантаження."
+					},
+					"auto-show-inter": {
+						"name": "Автопоказ Interstitial",
+						"desc": "Автоматично показує Interstitialи при відновленні попередньо запущеного додатка. Це не означає, що оголошення показуватиметься одразу після завантаження."
+					},
+					"min-interval-inter": {
+						"name": "Мінімальний інтервал між Interstitial",
+						"desc": "Мінімальний час (у секундах) між показами Interstitial."
+					},
+					"auto-load-reward": {
+						"name": "Автозавантаження Rewarded",
+						"desc": "Автоматично завантажує rewarded-оголошення при запуску та після показу, а також повторює при помилках завантаження."
+					},
+					"collect-location": {
+						"name": "Збирати геолокацію",
+						"desc": "Збирає з пристрою широту та довготу, округлені до сотих часток."
+					},
+					"trial-ad-free-interval": {
+						"name": "Період без реклами (тестовий)",
+						"desc": "Інтервал (у секундах) від моменту першої інсталяції додатка, протягом якого користувачі можуть використовувати додаток без показу реклами, при цьому зберігаючи доступ до формату Rewarded."
+					},
+					"development": {
+						"name": "Опції розробки",
+						"desc": "Ми настійно рекомендуємо включити режим тестових оголошень під час перевірки інтеграції. Якщо ви багато клікаєте по оголошеннях без тестового режиму, акаунт може бути позначений за недійсну активність."
+					},
+					"force-test-ads": {
+						"name": "Примусові тестові оголошення",
+						"desc": "Увімкніть режим тестових оголошень, який завжди повертає тестові оголошення для всіх пристроїв. [b]Не забудьте вимкнути після завершення тестів.[/b]"
+					},
+					"test-device-ids": {
+						"name": "ID тестових пристроїв",
+						"desc": "Список ID тестових пристроїв, які завжди запитуватимуть тестові оголошення. Роздільник ','"
+					},
+					"debug-logging": {
+						"name": "Дебаг-логування",
+						"desc": "Увімкнений режим відлагодження виводитиме багато корисної інформації про стани SDK з тегом журналу CAS.AI. Якщо ви виявили проблему в роботі CAS, надайте нам опис проблеми разом із повним логом пристрою."
+					},
+					"debug-geography": {
+						"name": "Дебаг Географія",
+						"desc": "Перезаписує визначену географію для тестування поведінки приватності. Діє лише в тестових сесіях.",
+						"items": {
+							"unknown": "Невідомо",
+							"eea": "Європейська економічна зона",
+							"us": "Регульований штат США",
+							"other": "Нерегульований"
+						}
+					}
+				},
+				"aceCategories": {
+					"general": "0. Загальне",
+					"banner-ads": "1. Banner оголошення",
+					"mrec-ads": "2. MREC оголошення",
+					"appopen-ads": "3. AppOpen оголошення",
+					"interstitial-ads": "4. Interstitial оголошення",
+					"rewarded-ads": "5. Rewarded оголошення"
+				},
+				"conditions": {
+					"on-consent-form-dismissed": {
+						"list-name": "Після закриття форми згоди",
+						"display-text": "Після закриття форми згоди",
+						"description": "Спрацьовує, коли форма згоди закривається після ініціалізації CAS або ручного показу форми."
+					},
+					"on-consent-required": {
+						"list-name": "Коли потрібна згода",
+						"display-text": "Коли потрібна згода",
+						"description": "Спрацьовує, коли потрібна згода користувача після ініціалізації CAS або показу форми згоди."
+					},
+					"on-consent-not-required": {
+						"list-name": "Коли згода не потрібна",
+						"display-text": "Коли згода не потрібна",
+						"description": "Спрацьовує, коли згода користувача не потрібна після ініціалізації CAS або ручного показу форми."
+					},
+					"is-consent-required": {
+						"list-name": "Чи потрібна згода",
+						"display-text": "Чи потрібна згода",
+						"description": "Перевіряє, чи потрібна згода користувача."
+					},
+					"on-banner-ad-loaded": {
+						"list-name": "Коли Banner завантажено",
+						"display-text": "Коли Banner завантажено",
+						"description": "Спрацьовує, коли Bannerне оголошення успішно завантажено."
+					},
+					"on-banner-ad-failed-to-load": {
+						"list-name": "Коли Banner не завантажено",
+						"display-text": "Коли Banner не вдалося завантажити",
+						"description": "Спрацьовує, коли Bannerне оголошення не вдалося завантажити."
+					},
+					"on-banner-ad-clicked": {
+						"list-name": "Коли Banner натиснуто",
+						"display-text": "Коли Banner натиснуто",
+						"description": "Спрацьовує, коли Bannerне оголошення натиснуто."
+					},
+					"is-banner-ad-loaded": {
+						"list-name": "Чи Banner завантажено",
+						"display-text": "Чи Banner завантажено",
+						"description": "Перевіряє, чи Bannerне оголошення завантажено."
+					},
+					"on-mrec-ad-loaded": {
+						"list-name": "Коли MREC завантажено",
+						"display-text": "Коли MREC завантажено",
+						"description": "Спрацьовує, коли MREC (середній прямокутник) успішно завантажено."
+					},
+					"on-mrec-ad-failed-to-load": {
+						"list-name": "Коли MREC не завантажено",
+						"display-text": "Коли MREC не вдалося завантажити",
+						"description": "Спрацьовує, коли MREC не вдалося завантажити."
+					},
+					"on-mrec-ad-clicked": {
+						"list-name": "Коли MREC натиснуто",
+						"display-text": "Коли MREC натиснуто",
+						"description": "Спрацьовує, коли MREC натиснуто."
+					},
+					"is-mrec-ad-loaded": {
+						"list-name": "Чи MREC завантажено",
+						"display-text": "Чи MREC завантажено",
+						"description": "Перевіряє, чи MREC завантажено."
+					},
+					"on-app-open-ad-loaded": {
+						"list-name": "Коли AppOpen завантажено",
+						"display-text": "Коли AppOpen завантажено",
+						"description": "Спрацьовує, коли AppOpen успішно завантажено."
+					},
+					"on-app-open-ad-failed-to-load": {
+						"list-name": "Коли AppOpen не завантажено",
+						"display-text": "Коли AppOpen не вдалося завантажити",
+						"description": "Спрацьовує, коли AppOpen не вдалося завантажити."
+					},
+					"on-app-open-ad-failed-to-show": {
+						"list-name": "Коли AppOpen не вдалося показати",
+						"display-text": "Коли AppOpen не вдалося показати",
+						"description": "Спрацьовує, коли AppOpen не вдалося показати."
+					},
+					"on-app-open-ad-showed": {
+						"list-name": "Після показу AppOpen",
+						"display-text": "AppOpen показано",
+						"description": "Спрацьовує, коли AppOpen показано."
+					},
+					"on-app-open-ad-clicked": {
+						"list-name": "Коли AppOpen натиснуто",
+						"display-text": "Коли AppOpen натиснуто",
+						"description": "Спрацьовує, коли AppOpen натиснуто."
+					},
+					"on-app-open-ad-dismissed": {
+						"list-name": "Після закриття AppOpen",
+						"display-text": "AppOpen закрито",
+						"description": "Спрацьовує, коли AppOpen закрито."
+					},
+					"is-app-open-ad-loaded": {
+						"list-name": "Чи AppOpen завантажено",
+						"display-text": "Чи AppOpen завантажено",
+						"description": "Перевіряє, чи AppOpen завантажено."
+					},
+					"on-interstitial-ad-loaded": {
+						"list-name": "Коли Interstitial завантажено",
+						"display-text": "Коли Interstitial завантажено",
+						"description": "Спрацьовує, коли Interstitial успішно завантажено."
+					},
+					"on-interstitial-ad-failed-to-load": {
+						"list-name": "Коли Interstitial не завантажено",
+						"display-text": "Коли Interstitial не вдалося завантажити",
+						"description": "Спрацьовує, коли Interstitial не вдалося завантажити."
+					},
+					"on-interstitial-ad-failed-to-show": {
+						"list-name": "Коли Interstitial не вдалося показати",
+						"display-text": "Коли Interstitial не вдалося показати",
+						"description": "Спрацьовує, коли Interstitial не вдалося показати."
+					},
+					"on-interstitial-ad-showed": {
+						"list-name": "Коли Interstitial показано",
+						"display-text": "Коли Interstitial показано",
+						"description": "Спрацьовує, коли Interstitial показано."
+					},
+					"on-interstitial-ad-clicked": {
+						"list-name": "Коли Interstitial натиснуто",
+						"display-text": "Коли Interstitial натиснуто",
+						"description": "Спрацьовує, коли Interstitial натиснуто."
+					},
+					"on-interstitial-ad-dismissed": {
+						"list-name": "Після закриття Interstitial",
+						"display-text": "Після закриття Interstitial",
+						"description": "Спрацьовує, коли Interstitial закрито."
+					},
+					"is-interstitial-ad-loaded": {
+						"list-name": "Чи Interstitial завантажено",
+						"display-text": "Чи Interstitial завантажено",
+						"description": "Перевіряє, чи Interstitial завантажено."
+					},
+					"on-rewarded-ad-loaded": {
+						"list-name": "Коли Rewarded завантажено",
+						"display-text": "Коли Rewarded завантажено",
+						"description": "Спрацьовує, коли Rewarded оголошення успішно завантажено."
+					},
+					"on-rewarded-ad-failed-to-load": {
+						"list-name": "Коли Rewarded не завантажено",
+						"display-text": "Коли Rewarded не вдалося завантажити",
+						"description": "Спрацьовує, коли Rewarded не вдалося завантажити."
+					},
+					"on-rewarded-ad-failed-to-show": {
+						"list-name": "Коли Rewarded не вдалося показати",
+						"display-text": "Коли Rewarded не вдалося показати",
+						"description": "Спрацьовує, коли Rewarded не вдалося показати."
+					},
+					"on-rewarded-ad-showed": {
+						"list-name": "Коли Rewarded показано",
+						"display-text": "Коли Rewarded показано",
+						"description": "Спрацьовує, коли Rewarded показано."
+					},
+					"on-rewarded-ad-clicked": {
+						"list-name": "Коли Rewarded натиснуто",
+						"display-text": "Коли Rewarded натиснуто",
+						"description": "Спрацьовує, коли Rewarded натиснуто."
+					},
+					"on-rewarded-ad-dismissed": {
+						"list-name": "Після закриття Rewarded",
+						"display-text": "Після закриття Rewarded",
+						"description": "Спрацьовує, коли Rewarded закрито."
+					},
+					"on-rewarded-ad-user-earned-reward": {
+						"list-name": "Коли користувач отримав винагороду",
+						"display-text": "Коли користувач отримав винагороду від Rewarded",
+						"description": "Спрацьовує, коли користувач отримує винагороду за перегляд Rewarded-оголошення."
+					},
+					"on-rewarded-ad-canceled-by-user": {
+						"list-name": "Rewarded скасовано користувачем",
+						"display-text": "Rewarded скасовано користувачем",
+						"description": "Спрацьовує, коли користувач скасовує rewarded і не повинен отримувати винагороду."
+					},
+					"is-rewarded-ad-loaded": {
+						"list-name": "Чи Rewarded завантажено",
+						"display-text": "Чи Rewarded завантажено",
+						"description": "Перевіряє, чи Rewarded оголошення завантажено."
+					}
+				},
+				"actions": {
+					"show-consent-form": {
+						"list-name": "Показати форму згоди",
+						"display-text": "Показати форму згоди, якщо потрібно [i]{0}[/i]",
+						"description": "Відображає форму згоди користувачу",
+						"params": {
+							"if-required-only": {
+								"name": "Тільки якщо потрібно",
+								"desc": "Показує форму згоди тільки якщо це необхідно і користувач раніше не відповідав."
+							}
+						}
+					},
+					"set-ad-sounds-muted": {
+						"list-name": "Встановити вимкнення звуків реклами",
+						"display-text": "Встановити звуки реклами вимкненими в [i]{0}[/i]",
+						"description": "Вказує, чи вимкнено звуки додатка. Впливає на початковий стан вимкнення звуку для повноекранних оголошень. Використовуйте цю дію лише якщо в додатку є власні контролі гучності (наприклад, музику або ефекти).",
+						"params": {
+							"is-muted": {
+								"name": "Вимкнено",
+								"desc": "Початковий стан вимкнення звуку для повноекранних оголошень."
+							}
+						}
+					},
+					"load-banner-ad": {
+						"list-name": "Завантажити Banner",
+						"display-text": "Завантажити [i]{0}[/i] Banner з лімітами ([i]{1}[/i], [i]{2}[/i])",
+						"description": "Завантажує Banner певного розміру. [b]Оголошення не відобразиться, поки не виконана дія показу.[/b] Дія працює асинхронно; використайте дію 'Wait for previous actions to complete', щоб дочекатися завантаження або помилки.",
+						"params": {
+							"ad-size": {
+								"name": "Розмір оголошення",
+								"desc": "Розмір Bannerа. Banner може мати лише один розмір одночасно. Виклик завантаження з іншим розміром знищить попередній і завантажить новий.",
+								"items": {
+									"adaptive": "Адаптивний",
+									"inline": "Вбудований",
+									"smart": "Смарт",
+									"leaderboard": "Лідерборд",
+									"standard": "Стандартний"
+								}
+							},
+							"max-width": {
+								"name": "Макс ширина",
+								"desc": "Максимальна ширина Bannerа в DP. Залиште 0 для відсутності обмеження. Використовується для Adaptive та Inline Bannerів."
+							},
+							"max-height": {
+								"name": "Макс висота",
+								"desc": "Максимальна висота Bannerа в DP. Залиште 0 для відсутності обмеження. Використовується для Inline Bannerів."
+							}
+						}
+					},
+					"show-banner-ad": {
+						"list-name": "Показати Banner",
+						"display-text": "Показати Banner у [i]{0}[/i] з відступом ([i]{1}[/i], [i]{2}[/i])",
+						"description": "Відображає Banner у вказаній позиції з опціональними відступами. Позицію Bannerа можна змінити у будь-який час, виконавши цю дію з новими параметрами.",
+						"params": {
+							"position": {
+								"name": "Позиція",
+								"desc": "Позиція на екрані для відображення Bannerа. CAS не дозволить розмістити оголошення за межами екрана або перекривати вирізи. Деякі позиції не підтримують відступи по X або Y, що вказано у дужках.",
+								"items": {
+									"top-center": "Зверху по центру (Y)",
+									"top-left": "Зверху зліва (X, Y)",
+									"top-right": "Зверху справа (X, Y)",
+									"bottom-center": "Знизу по центру (-)",
+									"bottom-left": "Знизу зліва (X)",
+									"bottom-right": "Знизу справа (X)",
+									"middle-center": "По центру посередині (Y)",
+									"middle-left": "По центру зліва (X, Y)",
+									"middle-right": "По центру справа (X, Y)"
+								}
+							},
+							"x-offset": {
+								"name": "Зсув X",
+								"desc": "Горизонтальний зсув від обраної позиції в DP. Залиште 0 для відсутності зсуву."
+							},
+							"y-offset": {
+								"name": "Зсув Y",
+								"desc": "Вертикальний зсув від обраної позиції в DP. Залиште 0 для відсутності зсуву."
+							}
+						}
+					},
+					"hide-banner-ad": {
+						"list-name": "Сховати Banner",
+						"display-text": "Сховати Banner",
+						"description": "Ховає наразі відображуваний Banner."
+					},
+					"destroy-banner-ad": {
+						"list-name": "Знищити Banner",
+						"display-text": "Знищити Banner",
+						"description": "Знищує інстанцію Bannerа та звільняє ресурси. Щоб продовжити роботу з оголошеннями, використайте дію завантаження оголошення."
+					},
+					"load-mrec-ad": {
+						"list-name": "Завантажити MREC",
+						"display-text": "Завантажити MREC",
+						"description": "Завантажує MREC (середній прямокутник). [b]Оголошення не відобразиться, поки не виконана дія показу.[/b] Дія працює асинхронно; використайте дію 'Wait for previous actions to complete', щоб дочекатися завантаження або помилки."
+					},
+					"show-mrec-ad": {
+						"list-name": "Показати MREC",
+						"display-text": "Показати MREC у [i]{0}[/i] з відступом ([i]{1}[/i], [i]{2}[/i])",
+						"description": "Відображає MREC у вказаній позиції з опціональними відступами. Позицію можна змінити в будь-який час, виконавши дію з новими параметрами.",
+						"params": {
+							"position": {
+								"name": "Позиція",
+								"desc": "Позиція на екрані для відображення MREC. CAS не дозволить розмістити оголошення за межами екрана або перекривати вирізи. Деякі позиції не підтримують відступи по X або Y.",
+								"items": {
+									"top-center": "Зверху по центру (Y)",
+									"top-left": "Зверху зліва (X, Y)",
+									"top-right": "Зверху справа (X, Y)",
+									"bottom-center": "Знизу по центру (-)",
+									"bottom-left": "Знизу зліва (X)",
+									"bottom-right": "Знизу справа (X)",
+									"middle-center": "По центру посередині (Y)",
+									"middle-left": "По центру зліва (X, Y)",
+									"middle-right": "По центру справа (X, Y)"
+								}
+							},
+							"x-offset": {
+								"name": "Зсув X",
+								"desc": "Горизонтальний зсув від обраної позиції в DP. Залиште 0 для відсутності зсуву."
+							},
+							"y-offset": {
+								"name": "Зсув Y",
+								"desc": "Вертикальний зсув від обраної позиції в DP. Залиште 0 для відсутності зсуву."
+							}
+						}
+					},
+					"hide-mrec-ad": {
+						"list-name": "Сховати MREC",
+						"display-text": "Сховати MREC",
+						"description": "Ховає наразі відображуваний MREC."
+					},
+					"destroy-mrec-ad": {
+						"list-name": "Знищити MREC",
+						"display-text": "Знищити MREC",
+						"description": "Знищує інстанцію MREC та звільняє ресурси. Щоб продовжити роботу з оголошеннями, використайте дію завантаження."
+					},
+					"load-app-open-ad": {
+						"list-name": "Завантажити AppOpen",
+						"display-text": "Завантажити AppOpen",
+						"description": "Завантажує AppOpen. Дія працює асинхронно; використайте дію 'Wait for previous actions to complete', щоб дочекатися завантаження або помилки."
+					},
+					"show-app-open-ad": {
+						"list-name": "Показати AppOpen",
+						"display-text": "Показати AppOpen",
+						"description": "Відображає AppOpen. Не потрібно перевіряти, чи завантажено оголошення перед показом. Дія працює асинхронно; використайте дію 'Wait for previous actions to complete', щоб дочекатися закриття або помилки."
+					},
+					"destroy-app-open-ad": {
+						"list-name": "Знищити AppOpen",
+						"display-text": "Знищити AppOpen",
+						"description": "Знищує інстанцію AppOpen та звільняє ресурси. Щоб продовжити роботу з оголошеннями, використайте дію завантаження."
+					},
+					"load-interstitial-ad": {
+						"list-name": "Завантажити Interstitial",
+						"display-text": "Завантажити Interstitial",
+						"description": "Завантажує Interstitial. Дія працює асинхронно; використайте дію 'Wait for previous actions to complete', щоб дочекатися завантаження або помилки."
+					},
+					"show-interstitial-ad": {
+						"list-name": "Показати Interstitial",
+						"display-text": "Показати Interstitial",
+						"description": "Відображає Interstitial. Не потрібно перевіряти, чи завантажено оголошення перед показом. Дія працює асинхронно; використайте дію 'Wait for previous actions to complete', щоб дочекатися закриття або помилки."
+					},
+					"destroy-interstitial-ad": {
+						"list-name": "Знищити Interstitial",
+						"display-text": "Знищити Interstitial",
+						"description": "Знищує інстанцію Interstitial та звільняє ресурси. Щоб продовжити роботу з оголошеннями, використайте дію завантаження."
+					},
+					"load-rewarded-ad": {
+						"list-name": "Завантажити Rewarded",
+						"display-text": "Завантажити Rewarded",
+						"description": "Завантажує rewarded-оголошення. Дія працює асинхронно; використайте дію 'Wait for previous actions to complete', щоб дочекатися завантаження або помилки."
+					},
+					"show-rewarded-ad": {
+						"list-name": "Показати Rewarded",
+						"display-text": "Показати Rewarded",
+						"description": "Відображає rewarded-оголошення. Використайте тригер 'On Ad User Earned Reward' для винагороди користувача. Не потрібно перевіряти, чи завантажено оголошення перед показом. Дія працює асинхронно; використайте дію 'Wait for previous actions to complete', щоб дочекатися закриття або помилки."
+					},
+					"destroy-rewarded-ad": {
+						"list-name": "Знищити Rewarded",
+						"display-text": "Знищити Rewarded",
+						"description": "Знищує інстанцію rewarded та звільняє ресурси. Щоб відновити роботу з оголошеннями, викличте дію завантаження."
+					}
+				},
+				"expressions": {
+					"initialization-error": {
+						"description": "Повертає повідомлення про помилку ініціалізації, якщо таке є.",
+						"translated-name": "Помилка ініціалізації"
+					},
+					"user-country-code": {
+						"description": "Повертає ISO2 код країни користувача за їх IP-адресою. Наприклад: 'US' або '--' якщо невідомо.",
+						"translated-name": "Код країни користувача"
+					},
+					"consent-status": {
+						"description": "Повертає поточний статус форми згоди: 'Unknown', 'Obtained' 'Not required', 'Unavailable', 'Internal error', 'Network error', 'Invalid context', 'Still presenting'",
+						"translated-name": "Статус згоди"
+					},
+					"error-message": {
+						"description": "У випадку помилки (завантаження/показ) повідомлення з описом помилки.",
+						"translated-name": "Повідомлення про помилку"
+					}
+				}
+			}
+		}
+	}
+}

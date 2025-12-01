@@ -33,10 +33,10 @@ C3.Plugins.CASAI_MobileAds.Cnds = {
         return this._isLoaded.Banner;
     },
     // MARK: MREC
-    OnMRecAdLoaded: () => true,
-    OnMRecAdFailedToLoad: () => true,
-    OnMRecAdClicked: () => true,
-    IsMRecAdLoaded() {
+    OnMRECAdLoaded: () => true,
+    OnMRECAdFailedToLoad: () => true,
+    OnMRECAdClicked: () => true,
+    IsMRECAdLoaded() {
         return this._isLoaded.MREC;
     },
     // MARK: AppOpen
