@@ -14,7 +14,7 @@ import zipfile
 import subprocess
 import shutil
 
-_CORDOVA_VERSION = "4.5.1"
+_CORDOVA_VERSION = "4.5.2"
 _PLUGIN_VERSION = _CORDOVA_VERSION + ".0"
 
 plugin_dirs = [
