@@ -249,8 +249,9 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
     }
 
     // MARK: Event handlers
+    // Event function must use lambdas to correct bind this context.
 
-    _onCASInitialized(status: InitializationStatus) {
+    _onCASInitialized = (status: InitializationStatus) => {
         this._initializationStatus = status;
 
         if (status.isConsentRequired || status.consentFlowStatus === "Obtained") {
@@ -263,37 +264,37 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         }
     }
 
-    _onCASLoaded(event: AdInfo) {
+    _onCASLoaded = (event: AdInfo) => {
         this._isLoaded[event.format] = true;
 
         let triggerName = "On" + event.format + "AdLoaded";
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
     }
 
-    _onCASFailedToLoad(event: AdErrorEvent) {
+    _onCASFailedToLoad = (event: AdErrorEvent) => {
         this._isLoaded[event.format] = false;
         this._errorMessage = event.message;
         let triggerName = "On" + event.format + "AdFailedToLoad";
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
     }
 
-    _onCASFailedToShow(event: AdErrorEvent) {
+    _onCASFailedToShow = (event: AdErrorEvent) => {
         this._errorMessage = event.message;
         let triggerName = "On" + event.format + "AdFailedToShow";
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
     }
 
-    _onCASShowed(event: AdInfo) {
+    _onCASShowed = (event: AdInfo) => {
         let triggerName = "On" + event.format + "AdShowed";
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
     }
 
-    _onCASClicked(event: AdInfo) {
+    _onCASClicked = (event: AdInfo) => {
         let triggerName = "On" + event.format + "AdClicked";
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
     }
 
-    _onCASDismissed(event: AdInfo) {
+    _onCASDismissed = (event: AdInfo) => {
         let triggerName = "On" + event.format + "AdDismissed";
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
 
@@ -302,7 +303,7 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         }
     }
 
-    _onCASEarnReward(event: AdInfo) {
+    _onCASEarnReward = (event: AdInfo) => {
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdUserEarnedReward);
     }
 

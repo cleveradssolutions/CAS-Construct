@@ -1,20 +1,23 @@
 
 # https://editor.construct.net/
 
+# Plugin compile flow:
+# $ npm update
+# $ tsc -p tsconfig.json
+# $ python3 update.py
+
+# Publication .c3addon to github releases
 # Publication login: CleverAdsSolutions 
 # https://www.construct.net/en/make-games/addons/manage
 # https://www.construct.net/en/make-games/addons/1532/cas-ai-mobile-ads
 
-# Plugin compile flow:
-# $ npm update
-# $ python3 update.py
 
 import os
 import zipfile
 import subprocess
 import shutil
 
-_CORDOVA_VERSION = "4.5.4"
+_CORDOVA_VERSION = "4.6.0"
 _PLUGIN_VERSION = _CORDOVA_VERSION + ".0"
 
 plugin_dirs = [

@@ -20,6 +20,54 @@ const AdSizeValue = ["A", "I", "S", "L", "B"];
 class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
     constructor() {
         super();
+        // MARK: Event handlers
+        // Event function must use lambdas to correct bind this context.
+        this._onCASInitialized = (status) => {
+            this._initializationStatus = status;
+            if (status.isConsentRequired || status.consentFlowStatus === "Obtained") {
+                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentRequired);
+            }
+            else {
+                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentNotRequired);
+            }
+            if (this._showConsentFormIfRequired) {
+                this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentFormDismissed);
+            }
+        };
+        this._onCASLoaded = (event) => {
+            this._isLoaded[event.format] = true;
+            let triggerName = "On" + event.format + "AdLoaded";
+            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
+        };
+        this._onCASFailedToLoad = (event) => {
+            this._isLoaded[event.format] = false;
+            this._errorMessage = event.message;
+            let triggerName = "On" + event.format + "AdFailedToLoad";
+            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
+        };
+        this._onCASFailedToShow = (event) => {
+            this._errorMessage = event.message;
+            let triggerName = "On" + event.format + "AdFailedToShow";
+            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
+        };
+        this._onCASShowed = (event) => {
+            let triggerName = "On" + event.format + "AdShowed";
+            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
+        };
+        this._onCASClicked = (event) => {
+            let triggerName = "On" + event.format + "AdClicked";
+            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
+        };
+        this._onCASDismissed = (event) => {
+            let triggerName = "On" + event.format + "AdDismissed";
+            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
+            if (!this._cordova && this._isAutoLoad[event.format]) {
+                setTimeout(() => this._onCASLoaded(event), 1000);
+            }
+        };
+        this._onCASEarnReward = (event) => {
+            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdUserEarnedReward);
+        };
         // Initialise object properties
         this._showConsentFormIfRequired = true;
         this._isInitialized = false;
@@ -168,53 +216,6 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
     }
     _setAdSoundsMuted(muted) {
         this._cordova?.setAdSoundsMuted(muted);
-    }
-    // MARK: Event handlers
-    _onCASInitialized(status) {
-        this._initializationStatus = status;
-        if (status.isConsentRequired || status.consentFlowStatus === "Obtained") {
-            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentRequired);
-        }
-        else {
-            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentNotRequired);
-        }
-        if (this._showConsentFormIfRequired) {
-            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentFormDismissed);
-        }
-    }
-    _onCASLoaded(event) {
-        this._isLoaded[event.format] = true;
-        let triggerName = "On" + event.format + "AdLoaded";
-        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
-    }
-    _onCASFailedToLoad(event) {
-        this._isLoaded[event.format] = false;
-        this._errorMessage = event.message;
-        let triggerName = "On" + event.format + "AdFailedToLoad";
-        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
-    }
-    _onCASFailedToShow(event) {
-        this._errorMessage = event.message;
-        let triggerName = "On" + event.format + "AdFailedToShow";
-        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
-    }
-    _onCASShowed(event) {
-        let triggerName = "On" + event.format + "AdShowed";
-        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
-    }
-    _onCASClicked(event) {
-        let triggerName = "On" + event.format + "AdClicked";
-        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
-    }
-    _onCASDismissed(event) {
-        let triggerName = "On" + event.format + "AdDismissed";
-        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
-        if (!this._cordova && this._isAutoLoad[event.format]) {
-            setTimeout(() => this._onCASLoaded(event), 1000);
-        }
-    }
-    _onCASEarnReward(event) {
-        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdUserEarnedReward);
     }
     // MARK: Banner ads
     async _loadBannerAd(adSize, maxWidth, maxHeight) {

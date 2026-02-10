@@ -37,6 +37,8 @@ PLUGIN_CLASS.Instance = class CASMobileAdsInstance extends SDK.IInstanceBase {
                         this._inst.SetPropertyValue(id, "Optimal");
                     } else if (solutions.indexOf("fam") >= 0) {
                         this._inst.SetPropertyValue(id, "Families");
+                    } else if (solutions.indexOf("tenj") >= 0) {
+                        this._inst.SetPropertyValue(id, "Tenjin");
                     } else {
                         this._inst.SetPropertyValue(id, "-");
                     }
