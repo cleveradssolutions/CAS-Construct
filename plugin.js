@@ -25,7 +25,7 @@ const SDK = globalThis.SDK;
 const PLUGIN_ID = "CASAI_MobileAds";
 ////////////////////////////////////////////
 const PLUGIN_CATEGORY = "monetisation";
-const CORDOVA_VERSION = "4.6.0";
+const CORDOVA_VERSION = "4.6.2";
 const PLUGIN_CLASS = (SDK.Plugins.CASAI_MobileAds = class CASMobileAds extends SDK.IPluginBase {
     constructor() {
         super(PLUGIN_ID);

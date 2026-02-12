@@ -33,15 +33,18 @@ PLUGIN_CLASS.Instance = class CASMobileAdsInstance extends SDK.IInstanceBase {
             case "android-solutions":
                 let solutions = (value as string).toLowerCase();
                 if (solutions != "-") {
-                    if (solutions.indexOf("opt") >= 0) {
-                        this._inst.SetPropertyValue(id, "Optimal");
-                    } else if (solutions.indexOf("fam") >= 0) {
-                        this._inst.SetPropertyValue(id, "Families");
-                    } else if (solutions.indexOf("tenj") >= 0) {
-                        this._inst.SetPropertyValue(id, "Tenjin");
-                    } else {
-                        this._inst.SetPropertyValue(id, "-");
-                    }
+                    const mapped = solutions
+                        .toLowerCase()
+                        .split(/[,\s;]+/)
+                        .map((s) => {
+                            if (s.includes("opt")) return "Optimal";
+                            if (s.includes("fam")) return "Families";
+                            if (s.includes("tenj")) return "Tenjin";
+                            return null;
+                        })
+                        .filter(Boolean);
+
+                    this._inst.SetPropertyValue(id, mapped.length > 0 ? mapped.join(",") : "-");
                 }
                 break;
             case "android-use-ad-id":
