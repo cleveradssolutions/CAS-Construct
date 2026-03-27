@@ -11,12 +11,15 @@
 # https://www.construct.net/en/make-games/addons/manage
 # https://www.construct.net/en/make-games/addons/1532/cas-ai-mobile-ads
 
+# Cordova plugins whitelist for Construct Server build:
+# https://www.construct.net/en/forum/construct-3/plugin-sdk-10/build-server-cordova-plugin-149266
+
 import os
 import zipfile
 import subprocess
 import shutil
 
-_CORDOVA_VERSION = "4.6.3"
+_CORDOVA_VERSION = "4.6.4"
 _PLUGIN_VERSION = _CORDOVA_VERSION + ".0"
 
 plugin_dirs = [

@@ -1,0 +1,9 @@
+{
+	"name": "ShowConsent",
+	"plugin-id": "Button",
+	"sid": 104874280502295,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": []
+}

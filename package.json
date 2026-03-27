@@ -1,9 +1,9 @@
 {
     "scripts": {
-        "dev": "tsc --watch",
-        "prepare": "tsc"
+        "dev": "tsc --watch"
     },
     "devDependencies": {
+        "@types/cordova": "^11.0.3",
         "cordova-plugin-casai": "*"
     }
 }

@@ -1,0 +1,342 @@
+{
+	"name": "MainEvents",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-loader-layout-complete",
+					"objectClass": "System",
+					"sid": 322562078285072
+				}
+			],
+			"actions": [
+				{
+					"id": "load-banner-ad",
+					"objectClass": "CASMobileAds",
+					"sid": 161286869399675,
+					"parameters": {
+						"ad-size": "adaptive",
+						"max-width": "-5",
+						"max-height": "0"
+					}
+				}
+			],
+			"sid": 693861810502596
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-interstitial-ad-loaded",
+					"objectClass": "CASMobileAds",
+					"sid": 746347495594839
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "Interstitial",
+					"sid": 506855281721913,
+					"parameters": {
+						"text": "\"Loaded \""
+					}
+				}
+			],
+			"sid": 186363600624684
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-interstitial-ad-dismissed",
+					"objectClass": "CASMobileAds",
+					"sid": 831375791757781
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "Interstitial",
+					"sid": 918384279701198,
+					"parameters": {
+						"text": "\"Dismissed \""
+					}
+				}
+			],
+			"sid": 526313897110548
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-rewarded-ad-loaded",
+					"objectClass": "CASMobileAds",
+					"sid": 478582001398772
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "Rewarded",
+					"sid": 216385486601626,
+					"parameters": {
+						"text": "\"Loaded \""
+					}
+				}
+			],
+			"sid": 532701288665599
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-rewarded-ad-dismissed",
+					"objectClass": "CASMobileAds",
+					"sid": 288303094669581
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "Rewarded",
+					"sid": 331460886558020,
+					"parameters": {
+						"text": "\"Dismissed \""
+					}
+				}
+			],
+			"sid": 636927227433104
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-rewarded-ad-user-earned-reward",
+					"objectClass": "CASMobileAds",
+					"sid": 253153897258304
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "Rewarded",
+					"sid": 474881418832053,
+					"parameters": {
+						"text": "\"Earn \""
+					}
+				}
+			],
+			"sid": 139370181244591
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-rewarded-ad-canceled-by-user",
+					"objectClass": "CASMobileAds",
+					"sid": 303871577230317
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "Rewarded",
+					"sid": 699673465721864,
+					"parameters": {
+						"text": "\"Canceled \""
+					}
+				}
+			],
+			"sid": 998363467494691
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-consent-required",
+					"objectClass": "CASMobileAds",
+					"sid": 962386306077028
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "App",
+					"sid": 496428828126373,
+					"parameters": {
+						"text": "\"Required \""
+					}
+				}
+			],
+			"sid": 926560974196297
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-consent-not-required",
+					"objectClass": "CASMobileAds",
+					"sid": 671352166663833
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "App",
+					"sid": 995922197810315,
+					"parameters": {
+						"text": "\"Not required \""
+					}
+				}
+			],
+			"sid": 820258155098161
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-consent-form-dismissed",
+					"objectClass": "CASMobileAds",
+					"sid": 869347392890716
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "App",
+					"sid": 557143398556631,
+					"parameters": {
+						"text": "\"Dismissed \""
+					}
+				}
+			],
+			"sid": 970038757544550
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-banner-ad-loaded",
+					"objectClass": "CASMobileAds",
+					"sid": 239502225383568
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "Banner",
+					"sid": 258086109510711,
+					"parameters": {
+						"text": "\"Loaded \""
+					}
+				},
+				{
+					"id": "show-banner-ad",
+					"objectClass": "CASMobileAds",
+					"sid": 122072082111168,
+					"parameters": {
+						"position": "bottom-center",
+						"x-offset": "0",
+						"y-offset": "0"
+					}
+				}
+			],
+			"sid": 147782727712928
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-mrec-ad-loaded",
+					"objectClass": "CASMobileAds",
+					"sid": 323665453373250
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "MREC",
+					"sid": 445801174573345,
+					"parameters": {
+						"text": "\"Loaded \""
+					}
+				},
+				{
+					"id": "show-mrec-ad",
+					"objectClass": "CASMobileAds",
+					"sid": 664618986667316,
+					"parameters": {
+						"position": "middle-right",
+						"x-offset": "0",
+						"y-offset": "0"
+					}
+				}
+			],
+			"sid": 978386133936615
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-clicked",
+					"objectClass": "ShowConsent",
+					"sid": 530246891577373
+				}
+			],
+			"actions": [
+				{
+					"id": "show-consent-form",
+					"objectClass": "CASMobileAds",
+					"sid": 875624519586386,
+					"parameters": {
+						"if-required-only": false
+					}
+				}
+			],
+			"sid": 185800681062370
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-clicked",
+					"objectClass": "ShowInterstitial",
+					"sid": 228110905493988
+				}
+			],
+			"actions": [
+				{
+					"id": "show-interstitial-ad",
+					"objectClass": "CASMobileAds",
+					"sid": 245159763861194
+				}
+			],
+			"sid": 697365124522752
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-clicked",
+					"objectClass": "ShowMrec",
+					"sid": 130289975720051
+				}
+			],
+			"actions": [
+				{
+					"id": "show-mrec-ad",
+					"objectClass": "CASMobileAds",
+					"sid": 275781844905638,
+					"parameters": {
+						"position": "middle-right",
+						"x-offset": "0",
+						"y-offset": "0"
+					}
+				}
+			],
+			"sid": 828602148674495
+		}
+	],
+	"sid": 986920911197380
+}

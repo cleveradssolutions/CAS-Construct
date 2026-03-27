@@ -25,7 +25,7 @@ const SDK = globalThis.SDK;
 const PLUGIN_ID = "CASAI_MobileAds";
 ////////////////////////////////////////////
 const PLUGIN_CATEGORY = "monetisation";
-const CORDOVA_VERSION = "4.6.3";
+const CORDOVA_VERSION = "4.6.4";
 const PLUGIN_CLASS = (SDK.Plugins.CASAI_MobileAds = class CASMobileAds extends SDK.IPluginBase {
     constructor() {
         super(PLUGIN_ID);
@@ -104,7 +104,7 @@ const PLUGIN_CLASS = (SDK.Plugins.CASAI_MobileAds = class CASMobileAds extends S
             new SDK.PluginProperty("longtext", "test-device-ids"),
             new SDK.PluginProperty("check", "debug-logging", false),
             new SDK.PluginProperty("combo", "debug-geography", {
-                initialValue: "unknown",
+                initialValue: "eea",
                 items: ["unknown", "eea", "us", "other"],
             }),
         ]);

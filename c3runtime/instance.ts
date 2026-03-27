@@ -77,6 +77,11 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
     _initializationStatus?: InitializationStatus;
     _errorMessage?: string;
 
+    _targetAudience?: AdAudience;
+    _forceTestAds?: boolean;
+    _testDeviceIdsStr?: string;
+    _mediationExtrasStr?: string;
+
     _cordova?: CASMobileAds;
 
     constructor() {
@@ -133,6 +138,31 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
             this._showConsentFormIfRequired = props[InitParameter.auto_show_consent_form] as boolean;
             let geographyId = props[InitParameter.debug_geography] as number;
             this._debugGeography = DebugGeogrpahyValues[geographyId];
+
+            let targetAudienceId = props[InitParameter.target_audience] as number;
+            this._targetAudience = AudienceValues[targetAudienceId];
+            this._forceTestAds = props[InitParameter.force_test_ads] as boolean;
+
+            this._testDeviceIdsStr = props[InitParameter.test_device_ids] as string;
+            this._mediationExtrasStr = props[InitParameter.mediation_extras] as string;
+
+            if (this._cordova) {
+                let collectLocation = props[InitParameter.collect_location] as boolean;
+                this._cordova.setLocationCollectionEnabled(collectLocation);
+                let debugLogging = props[InitParameter.debug_logging] as boolean;
+                this._cordova.setDebugLoggingEnabled(debugLogging);
+                let trialAdFreeInterval = props[InitParameter.trial_ad_free_interval] as number;
+                this._cordova.setTrialAdFreeInterval(trialAdFreeInterval);
+                let appKeywords = props[InitParameter.app_keywords] as string;
+                if (appKeywords) {
+                    let keywords = appKeywords.split(/[ ,;]+/);
+                    this._cordova.setAppKeywords(keywords);
+                }
+                let appContentUrl = props[InitParameter.app_content_url] as string;
+                this._cordova.setAppContentUrl(appContentUrl);
+            }
+        } else {
+            console.log("CASMobileAds: Init properties not set");
         }
 
         globalThis.document.addEventListener("casai_ad_loaded", this._onCASLoaded, false);
@@ -143,14 +173,30 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         globalThis.document.addEventListener("casai_ad_dismissed", this._onCASDismissed, false);
         globalThis.document.addEventListener("casai_ad_reward", this._onCASEarnReward, false);
 
-        // Required delay here to correct work triggers.
-        setTimeout(() => this._runAutomation(), 500);
+        // Required wait of Construct started to correct handle triggers.
+        this.runtime.addEventListener("afterprojectstart", this._onConstructStarted);
+
+        if (!this._cordova) {
+            const cordovaEngine = globalThis.window.cordova;
+            if (cordovaEngine) {
+                throw new Error(
+                    "CAS.AI Native plugin is not registered in the Construct app.\n" +
+                        "Possible reasons:\n" +
+                        "1. The app was built using Construct's cloud build service (Remote Preview / Server Build).\n" +
+                        "   CAS.AI is not yet included in the cloud build whitelist.\n" +
+                        "   To fix: export the Cordova project and build it locally instead.\n" +
+                        "2. The CAS.AI addon was added before the Cordova platform installed.\n" +
+                        "   To fix MacOS: rm -rf platforms plugins && cordova prepare\n" +
+                        "   To Fix Windows: rmdir /s /q platforms & rmdir /s /q plugins & cordova prepare",
+                );
+            }
+        }
     }
 
     // MARK: Initialization
 
     _initialize() {
-        if (this._isInitialized) {
+        if (this._isInitialized === true) {
             if (this._initializationStatus && this._initializationStatus.error) {
                 this._cordova?.initialize({}).then(this._onCASInitialized);
             }
@@ -166,56 +212,64 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
             return;
         }
 
-        var targetAudience = undefined;
-        var forceTestAds = undefined;
         var testDeviceIds = undefined;
+        if (this._testDeviceIdsStr) {
+            testDeviceIds = this._testDeviceIdsStr.split(/[ ,;]+/);
+        }
         var mediationExtras = undefined;
-        const props = this._getInitProperties();
-        if (props) {
-            let targetAudienceId = props[InitParameter.target_audience] as number;
-            targetAudience = AudienceValues[targetAudienceId];
-            forceTestAds = props[InitParameter.force_test_ads] as boolean;
-            let testDeviceIdsStr = props[InitParameter.test_device_ids] as string;
-            if (testDeviceIdsStr) {
-                testDeviceIds = testDeviceIdsStr.split(/[ ,;]+/);
+        if (this._mediationExtrasStr) {
+            try {
+                mediationExtras = JSON.parse(this._mediationExtrasStr);
+            } catch (e) {
+                console.warn("CASMobileAds: failed to parse mediation extras JSON", this._mediationExtrasStr);
             }
-            let mediationExtrasStr = props[InitParameter.mediation_extras] as string;
-            if (mediationExtrasStr) {
-                try {
-                    mediationExtras = JSON.parse(mediationExtrasStr);
-                } catch (e) {
-                    console.warn("CAS Mobile Ads: failed to parse mediation extras JSON");
-                }
-            }
-
-            let collectLocation = props[InitParameter.collect_location] as boolean;
-            this._cordova.setLocationCollectionEnabled(collectLocation);
-            let debugLogging = props[InitParameter.debug_logging] as boolean;
-            this._cordova.setDebugLoggingEnabled(debugLogging);
-            let trialAdFreeInterval = props[InitParameter.trial_ad_free_interval] as number;
-            this._cordova.setTrialAdFreeInterval(trialAdFreeInterval);
-            let appKeywords = props[InitParameter.app_keywords] as string;
-            if (appKeywords) {
-                let keywords = appKeywords.split(/[ ,;]+/);
-                this._cordova.setAppKeywords(keywords);
-            }
-            let appContentUrl = props[InitParameter.app_content_url] as string;
-            this._cordova.setAppContentUrl(appContentUrl);
         }
 
         this._cordova
             .initialize({
-                targetAudience: targetAudience,
+                targetAudience: this._targetAudience,
                 showConsentFormIfRequired: this._showConsentFormIfRequired,
-                forceTestAds: forceTestAds,
+                forceTestAds: this._forceTestAds,
                 testDeviceIds: testDeviceIds,
                 debugGeography: this._debugGeography,
                 mediationExtras: mediationExtras,
+                overrideFramework: "Construct",
             })
             .then(this._onCASInitialized);
     }
 
-    _runAutomation() {
+    _handleConsentEvents(status: string | undefined, dismissed: boolean) {
+        if (status == "Obtained") {
+            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentRequired);
+        } else {
+            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentNotRequired);
+        }
+        if (dismissed) {
+            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentFormDismissed);
+        }
+    }
+
+    async _showConsentForm(ifRequired: boolean) {
+        let status = await this._cordova?.showConsentFlow({
+            ifRequired: ifRequired,
+            debugGeography: this._debugGeography,
+        });
+        this._handleConsentEvents(status, true);
+        return status;
+    }
+
+    _setAdSoundsMuted(muted: boolean) {
+        this._cordova?.setAdSoundsMuted(muted);
+    }
+
+    // MARK: Event handlers
+    // Event function must use lambdas to correct bind this context.
+
+    _onConstructStarted = () => {
+        if (this._initializationStatus) {
+            this._onCASInitialized(this._initializationStatus);
+        }
+
         if (this._isAutoLoad.MREC) {
             this._loadMRecAd();
         }
@@ -228,71 +282,48 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         if (this._isAutoLoad.Rewarded) {
             this._loadRewardedAd();
         }
-    }
-
-    async _showConsentForm(ifRequired: boolean) {
-        let status = await this._cordova?.showConsentFlow({
-            ifRequired: ifRequired,
-            debugGeography: this._debugGeography,
-        });
-        if (status == "Obtained") {
-            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentRequired);
-        } else {
-            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentNotRequired);
-        }
-        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentFormDismissed);
-        return status;
-    }
-
-    _setAdSoundsMuted(muted: boolean) {
-        this._cordova?.setAdSoundsMuted(muted);
-    }
-
-    // MARK: Event handlers
-    // Event function must use lambdas to correct bind this context.
+    };
 
     _onCASInitialized = (status: InitializationStatus) => {
         this._initializationStatus = status;
 
         if (status.isConsentRequired || status.consentFlowStatus === "Obtained") {
-            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentRequired);
+            this._handleConsentEvents("Obtained", this._showConsentFormIfRequired);
         } else {
-            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentNotRequired);
+            this._handleConsentEvents(status.consentFlowStatus, this._showConsentFormIfRequired);
         }
-        if (this._showConsentFormIfRequired) {
-            this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnConsentFormDismissed);
-        }
-    }
+    };
 
     _onCASLoaded = (event: AdInfo) => {
         this._isLoaded[event.format] = true;
 
         let triggerName = "On" + event.format + "AdLoaded";
-        this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
-    }
+        let condition = C3.Plugins.CASAI_MobileAds.Cnds[triggerName];
+        this._trigger(condition);
+    };
 
     _onCASFailedToLoad = (event: AdErrorEvent) => {
         this._isLoaded[event.format] = false;
         this._errorMessage = event.message;
         let triggerName = "On" + event.format + "AdFailedToLoad";
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
-    }
+    };
 
     _onCASFailedToShow = (event: AdErrorEvent) => {
         this._errorMessage = event.message;
         let triggerName = "On" + event.format + "AdFailedToShow";
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
-    }
+    };
 
     _onCASShowed = (event: AdInfo) => {
         let triggerName = "On" + event.format + "AdShowed";
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
-    }
+    };
 
     _onCASClicked = (event: AdInfo) => {
         let triggerName = "On" + event.format + "AdClicked";
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds[triggerName]);
-    }
+    };
 
     _onCASDismissed = (event: AdInfo) => {
         let triggerName = "On" + event.format + "AdDismissed";
@@ -301,11 +332,11 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         if (!this._cordova && this._isAutoLoad[event.format]) {
             setTimeout(() => this._onCASLoaded(event), 1000);
         }
-    }
+    };
 
     _onCASEarnReward = (event: AdInfo) => {
         this._trigger(C3.Plugins.CASAI_MobileAds.Cnds.OnRewardedAdUserEarnedReward);
-    }
+    };
 
     // MARK: Banner ads
 
@@ -324,7 +355,7 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
                 refreshInterval: this._autoRefreshBanner,
             });
         } catch (error: any) {
-            // do nothing, event will be triggered
+            // do nothing, document event will be triggered
         }
     }
 
@@ -358,7 +389,7 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
                 refreshInterval: this._autoRefreshBanner,
             });
         } catch (error: any) {
-            // do nothing, event will be triggered
+            // do nothing, document event will be triggered
         }
     }
 
@@ -392,7 +423,7 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
                 autoShow: this._isAutoShow.AppOpen,
             });
         } catch (error: any) {
-            // do nothing, event will be triggered
+            // do nothing, document event will be triggered
         }
     }
 
@@ -406,7 +437,7 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         try {
             await this._cordova.appOpenAd.show();
         } catch (error: any) {
-            // do nothing, event will be triggered
+            // do nothing, document event will be triggered
         }
     }
 
@@ -429,7 +460,7 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
                 minInterval: this._minIntervalInterstitial,
             });
         } catch (error: any) {
-            // do nothing, event will be triggered
+            // do nothing, document event will be triggered
         }
     }
 
@@ -443,7 +474,7 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
         try {
             await this._cordova.interstitialAd.show();
         } catch (error: any) {
-            // do nothing, event will be triggered
+            // do nothing, document event will be triggered
         }
     }
 
@@ -464,7 +495,7 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
                 autoReload: this._isAutoLoad.Rewarded,
             });
         } catch (error: any) {
-            // do nothing, event will be triggered
+            // do nothing, document event will be triggered
         }
     }
 
@@ -482,7 +513,7 @@ class CASMobileAdsInstance extends globalThis.ISDKInstanceBase {
                 let info = await this._cordova.rewardedAd.show();
                 isUserEarnReward = info.isUserEarnReward;
             } catch (error: any) {
-                // do nothing, event will be triggered
+                // do nothing, document event will be triggered
             }
         }
         if (!isUserEarnReward) {

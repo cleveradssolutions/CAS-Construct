@@ -25,6 +25,18 @@ Visit [Construct Addons](https://www.construct.net/en/make-games/addons/1532/cas
 Found a bug? Have a feature request or suggestion?  
 Please open an issue using [GitHub’s Issue Tracker](https://github.com/cleveradssolutions/CAS-Construct/issues).
 
+## Addon Development Setup
+After cloning the repository, install the dependencies:
+```sh
+npm install
+```
+
+For proper type checking, need to export Construct's type definitions to addon folder:
+1. In Construct, [enable developer mode](https://www.construct.net/en/make-games/manuals/addon-sdk/guide/enabling-developer-mode) and then reload Construct.
+2. In the main menu, a new Developer mode submenu should have appeared. In that submenu, select Set up TypeScript for addon. 
+  > Note this requires a browser that supports the File System Access API - try using Chrome or Edge if the option does not appear.
+3. A folder picker appears. Select the folder that contains `addon.json`.
+
 ## Dependency repositories
 This Construct plugin is built on top of the CAS.AI Cordova plugin for building Android and iOS applications.
 - [CAS.AI Cordova plugin (GitHub)](https://github.com/cleveradssolutions/CAS-Cordova)

@@ -1,0 +1,41 @@
+{
+	"name": "CASMobileAds",
+	"plugin-id": "CASAI_MobileAds",
+	"sid": 962419387766217,
+	"singleglobal-inst": {
+		"type": "CASMobileAds",
+		"properties": {
+			"ios-cas-id": "demo",
+			"ios-solutions": "-",
+			"ios-adapters": "GoogleAds",
+			"ios-tracking-usage": "Your data will remain confidential and will only be used to provide you a better and personalised ad experience",
+			"android-solutions": "-",
+			"android-adapters": "googleAds",
+			"android-use-ad-id": "true",
+			"target-audience": "unknown",
+			"app-keywords": "",
+			"app-content-url": "",
+			"mediation-extras": "",
+			"auto-show-consent-form": true,
+			"auto-load-banner": true,
+			"auto-refresh-banner": 30,
+			"auto-load-mrec": true,
+			"auto-refresh-mrec": 30,
+			"auto-load-appopen": true,
+			"auto-show-appopen": false,
+			"auto-load-inter": true,
+			"auto-show-inter": false,
+			"min-interval-inter": 0,
+			"auto-load-reward": true,
+			"collect-location": true,
+			"trial-ad-free-interval": 0,
+			"force-test-ads": true,
+			"test-device-ids": "",
+			"debug-logging": true,
+			"debug-geography": "eea"
+		},
+		"uid": 4,
+		"sid": 307544316841985,
+		"tags": ""
+	}
+}

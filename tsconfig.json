@@ -16,6 +16,7 @@
 		"./*.ts",
 		"./c3runtime/*.ts",
 		"./ts-defs/**/*.ts",
-		"./node_modules/cordova-plugin-casai/types/*.d.ts"
+		"./node_modules/cordova-plugin-casai/types/*.d.ts",
+        "./node_modules/@types/cordova/index.d.ts"
 	]
 }
