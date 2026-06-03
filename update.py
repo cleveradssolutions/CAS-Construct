@@ -22,7 +22,7 @@ import zipfile
 import subprocess
 import shutil
 
-_CORDOVA_VERSION = "4.7.2"
+_CORDOVA_VERSION = "4.7.3"
 _PLUGIN_VERSION = _CORDOVA_VERSION + ".0"
 
 plugin_dirs = [
