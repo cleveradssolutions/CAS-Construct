@@ -5,6 +5,7 @@
 # $ npm update
 # $ python3 update.py
 # tsc also called by udpdate.py
+# https://github.com/cleveradssolutions/CAS-Construct/releases
 
 # Publication .c3addon to github releases
 # Publication login: CleverAdsSolutions 
@@ -22,7 +23,7 @@ import zipfile
 import subprocess
 import shutil
 
-_CORDOVA_VERSION = "4.7.3"
+_CORDOVA_VERSION = "4.7.4"
 _PLUGIN_VERSION = _CORDOVA_VERSION + ".0"
 
 plugin_dirs = [
