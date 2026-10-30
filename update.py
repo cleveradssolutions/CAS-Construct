@@ -16,14 +16,14 @@
 # https://www.construct.net/en/forum/construct-3/plugin-sdk-10/build-server-cordova-plugin-149266
 
 # Create issue to whitelist new version
-# https://github.com/Scirra/Construct-bugs/issues/9068
+# https://github.com/Scirra/Construct-bugs/issues/9250
 
 import os
 import zipfile
 import subprocess
 import shutil
 
-_CORDOVA_VERSION = "4.8.0"
+_CORDOVA_VERSION = "4.8.3"
 _PLUGIN_VERSION = _CORDOVA_VERSION + ".0"
 
 plugin_dirs = [
